@@ -8,47 +8,33 @@ import {
 import Dashboard from '../dashboard/Dashboard';
 import BoardView from '../board/BoardView';
 import ProjectList from '../projects/ProjectList';
-
-// This site has 3 pages, all of which are rendered
-// dynamically in the browser (not server rendered).
-//
-// Although the page does not ever refresh, notice how
-// React Router keeps the URL up to date as you navigate
-// through the site. This preserves the browser history,
-// making sure things like the back button and bookmarks
-// work properly.
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
 export default function BasicExample() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/boards">Board</Link>
-          </li>
-          <li>
-            <Link to="/projects">Projects</Link>
-          </li>           
-        </ul>
+        <Nav>
+          <NavItem>
+            <NavLink href="/">Home</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/about">About</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/dashboard">Dashboard</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/boards">Boards</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/projects">Projects</NavLink>
+          </NavItem>
+
+        </Nav>
 
         <hr />
 
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
         <Switch>
           <Route exact path="/">
             <Home />
