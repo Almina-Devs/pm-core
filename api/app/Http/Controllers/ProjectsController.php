@@ -35,7 +35,17 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newProject = new Project();
+
+        $newProject->name = $request->input('name');
+        $newProject->description = $request->input('description');
+        $newProject->start_date = $request->input('startDate');
+        $newProject->end_date = $request->input('endDate');
+        $newProject->active = $request->input('active');
+
+        $newProject->save();
+
+        return response('project created', 200);
     }
 
     /**

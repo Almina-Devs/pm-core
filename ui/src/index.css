@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navigation {
+  padding: 25px;
+}
+
+.div-container__medium {
+  width: 50%;
+  height: auto;
+  margin : auto;
+  border: 1px;
+  border-style: solid;
+  border-color: lightblue;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* unvisited link */
+a:link {
+  color: darkgray;
+}
+
+/* mouse over link */
+a:hover {
+  text-shadow: 1px 1px 5px lightblue;
+}
+
+/* selected link */
+a:active {
+  color: darkblue;
+}
+
+.col-left {
+  padding: 10px;
+  text-align: right;
+}
+.col-right {
+  padding: 10px;
+  text-align: left;
+}

@@ -35,7 +35,7 @@ class BoardView extends PureComponent {
         return (
             <React.Fragment>
                 <p>Board</p>
-                <Board data={data} />
+                <Board data={data} style={{backgroundColor: 'white'}} />
             </React.Fragment>
         )
     }

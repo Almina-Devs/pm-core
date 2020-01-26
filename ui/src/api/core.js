@@ -9,3 +9,7 @@ export function getHi() {
 export function get(endpoint) {
     return axios.get(`${apiUrl}${endpoint}`);
 }
+
+export function post(endpoint, data) {
+    return axios.post(`${apiUrl}${endpoint}`, data);
+}
