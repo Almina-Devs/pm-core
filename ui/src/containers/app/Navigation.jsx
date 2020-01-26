@@ -17,13 +17,13 @@ const Navigation = (props) => {
             Projects
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem>
-                <a href="/projects">List</a>
-            </DropdownItem>
+            <a href="/projects">
+              <DropdownItem>List</DropdownItem>
+            </a>
             <DropdownItem divider />
-            <DropdownItem>
-                <a href="/projects/create">Create</a>
-            </DropdownItem>
+            <a href="/projects/create">
+              <DropdownItem>Create</DropdownItem>
+            </a>
           </DropdownMenu>
         </Dropdown>
         <NavItem>

@@ -27,20 +27,20 @@ code {
   padding: 10px;
 }
 
-/* unvisited link */
-a:link {
+a { 
   color: darkgray;
+  text-decoration: none; 
 }
 
-/* mouse over link */
 a:hover {
   text-shadow: 1px 1px 5px lightblue;
 }
 
-/* selected link */
 a:active {
-  color: darkblue;
+  color: navy;
 }
+
+
 
 .col-left {
   padding: 10px;
