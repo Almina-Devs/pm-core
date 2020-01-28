@@ -16,7 +16,7 @@ class CreateLanesTable extends Migration
         Schema::create('lanes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 255);
-            $table->string('lable', 100)->nullable();
+            $table->string('label', 100)->nullable();
             $table->integer('project_id')->nullable();
             $table->timestamps();
         });

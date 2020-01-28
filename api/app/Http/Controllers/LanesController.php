@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Project;
+use App\Models\Lane;
 
-class ProjectsController extends Controller
+class LanesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,19 +14,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $lanes = Lanes::all();
 
-        return response($projects, 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response($lanes, 200);
     }
 
     /**
@@ -37,17 +27,14 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        $newProject = new Project();
+        $newLane = new Lane();
+        $newLane->title = $request->input('title');
+        $newLane->label = $request->input('label');
+        $newLane->project_id = $request->input('project_id');
 
-        $newProject->name = $request->input('name');
-        $newProject->description = $request->input('description');
-        $newProject->start_date = $request->input('startDate');
-        $newProject->end_date = $request->input('endDate');
-        $newProject->active = $request->input('active');
+        $newLane->save();
 
-        $newProject->save();
-
-        return response('project created', 200);
+        return response('project lane created', 200);
     }
 
     /**
@@ -58,7 +45,9 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        //
+        $lane = Lane::where('id', $id)->first();
+
+        return response($lane, 200);
     }
 
     /**

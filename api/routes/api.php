@@ -22,3 +22,5 @@ Route::get('/', function() {
 });
 
 Route::resource('/projects', 'ProjectsController');
+
+Route::resource('/lanes', 'LanesController');

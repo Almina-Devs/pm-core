@@ -4,11 +4,12 @@ import {
     Switch,
     Route
   } from "react-router-dom";
-  import Navigation from './Navigation';
-  import Dashboard from '../dashboard/Dashboard';
-  import BoardView from '../board/BoardView';
-  import ProjectList from '../projects/ProjectList';
-  import CreateProject from '../projects/CreateProject';
+import Navigation from './Navigation';
+import Dashboard from '../dashboard/Dashboard';
+import BoardView from '../board/BoardView';
+import ProjectList from '../projects/ProjectList';
+import CreateProject from '../projects/CreateProject';
+import CreateLane from '../lanes/CreateLane';
 
   
 export default class Router extends Component {
@@ -30,6 +31,9 @@ export default class Router extends Component {
                     </Route>
                     <Route path="/projects/create">
                         <CreateProject />
+                    </Route>
+                    <Route path="/lanes/create">
+                        <CreateLane />
                     </Route>
                     </Switch>
                 </Routes>

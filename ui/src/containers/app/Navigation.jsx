@@ -24,6 +24,11 @@ const Navigation = (props) => {
             <a href="/projects/create">
               <DropdownItem>Create</DropdownItem>
             </a>
+            <DropdownItem divider />
+            <DropdownItem header>Lanes</DropdownItem>
+            <a href="/lanes/create">
+              <DropdownItem>Create Lane</DropdownItem>
+            </a>
           </DropdownMenu>
         </Dropdown>
         <NavItem>
