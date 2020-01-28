@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use JWTAuth;
 use Illuminate\Http\Request;
 use App\Models\Lane;
 
 class LanesController extends Controller
 {
+
+    /**
+     * Projects Controller Construct
+     */
+    public function __construct() {
+        $this->user = JWTAuth::parseToken()->authenticate();
+    }
+
     /**
      * Display a listing of the resource.
      *
