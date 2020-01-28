@@ -37,6 +37,9 @@ const Navigation = (props) => {
         <NavItem>
           <NavLink href="/boards">Boards</NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink href="/login">Login</NavLink>
+        </NavItem>
       </Nav>
     </div>
   );

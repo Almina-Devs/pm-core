@@ -15,6 +15,8 @@ class ProjectList extends PureComponent {
     componentDidMount() {
         get('projects').then((res) => {
             this.setState({ projects : res.data });
+        }).catch(err => {
+            console.log(err);
         });  
     }
 

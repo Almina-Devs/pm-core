@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { get } from '../../api/core';
 import { Table } from 'reactstrap';
-import moment from 'moment';
 
 class LanesList extends PureComponent {
     constructor(props) {
