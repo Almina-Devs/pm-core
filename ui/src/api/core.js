@@ -18,22 +18,22 @@ var axiosInstance = axios.create({
 });
 
 export const login = data => {
-    return axiosInstance.post(`${apiUrl}/login`, data);
+    return axiosInstance.post(`${apiUrl}login`, data);
 }
 
-export const logout = data => {
-    return axiosInstance.post(`${apiUrl}/login`, data);
+export const logout = () => {
+    return axiosInstance.post(`${apiUrl}logout`);
 }
 
-export function resgister(data) {
-    return axiosInstance.post(`${apiUrl}/login`, data);
+export const resgister = data => {
+    return axiosInstance.post(`${apiUrl}register`, data);
 }
 
-export function get(endpoint) {
+export const get = endpoint => {
     return axiosInstance.get(`${apiUrl}${endpoint}`);
 }
 
-export function post(endpoint, data) {
+export const post = (endpoint, data) => {
     return axiosInstance.post(`${apiUrl}${endpoint}`, data);
 }
 

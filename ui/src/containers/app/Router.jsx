@@ -12,6 +12,7 @@ import CreateProject from '../projects/CreateProject';
 import CreateLane from '../lanes/CreateLane';
 import LanesList from '../lanes/LanesList';
 import Login from '../app/auth/Login';
+import Logout from '../app/auth/Logout';
   
 export default class Router extends Component {
     
@@ -41,6 +42,9 @@ export default class Router extends Component {
                         </Route>
                         <Route path="/login" exact={true}>
                             <Login />
+                        </Route>
+                        <Route path="/logout" exact={true}>
+                            <Logout />
                         </Route>
                     </Switch>
                 </Routes>

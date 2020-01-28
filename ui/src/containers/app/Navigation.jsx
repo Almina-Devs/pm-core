@@ -40,6 +40,9 @@ const Navigation = (props) => {
         <NavItem>
           <NavLink href="/login">Login</NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink href="/logout">Logout</NavLink>
+        </NavItem>
       </Nav>
     </div>
   );

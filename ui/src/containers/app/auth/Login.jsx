@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
-import { post } from '../../../api/core';
+import { login } from '../../../api/core';
 
 export default class Login extends PureComponent {
     constructor(props) {
@@ -25,8 +25,9 @@ export default class Login extends PureComponent {
             password
         }
 
-        post('login', data).then((res) => {
+        login(data).then((res) => {
             localStorage.setItem('access_token', res.data.token);
+            window.location = '/dashboard';
         }).catch((err) => {
             console.log(err);
         })
