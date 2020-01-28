@@ -33,8 +33,19 @@ class LanesController extends Controller
         $newLane->project_id = $request->input('project_id');
 
         $newLane->save();
-
-        return response('project lane created', 200);
+        
+        if ($newLane) {
+            return response()->json([
+                'success' => true,
+                'lane' => $newLane
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error creating the lane.'
+            ], 500);
+        }
+        
     }
 
     /**

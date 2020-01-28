@@ -21,22 +21,22 @@ export default class Router extends Component {
                 <Navigation />
                 <Routes>
                     <Switch>
-                    <Route path="/dashboard">
+                    <Route path="/dashboard" exact={true}>
                         <Dashboard />
                     </Route>
-                    <Route path="/boards">
+                    <Route path="/boards" exact={true}>
                         <BoardView />
                     </Route>
                     <Route path="/projects" exact={true}>
                         <ProjectList />
                     </Route>
-                    <Route path="/projects/create">
+                    <Route path="/projects/create" exact={true}>
                         <CreateProject />
                     </Route>
-                    <Route path="/lanes">
+                    <Route path="/lanes" exact={true}>
                         <LanesList />
                     </Route>
-                    <Route path="/lanes/create">
+                    <Route path="/lanes/create" exact={true}>
                         <CreateLane />
                     </Route>
                     </Switch>

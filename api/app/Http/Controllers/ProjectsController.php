@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use JWTAuth;
 use Illuminate\Http\Request;
 use App\Models\Project;
 
 class ProjectsController extends Controller
 {
+    /**
+     * Projects Controller Construct
+     */
+    public function __construct() {
+        $this->user = JWTAuth::parseToken()->authenticate();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,16 +25,6 @@ class ProjectsController extends Controller
         $projects = Project::all();
 
         return response($projects, 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -47,7 +45,19 @@ class ProjectsController extends Controller
 
         $newProject->save();
 
-        return response('project created', 200);
+        if ($newProject) {
+            return response()->json([
+                'success' => true,
+                'project' => $newProject
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error creating the project.'
+            ], 500);
+        }
+
+        return $newProject;
     }
 
     /**

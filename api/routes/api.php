@@ -13,14 +13,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('login', 'ApiController@login');
+Route::post('register', 'ApiController@register');
+
+// needs auth group
+
+Route::group(['middleware' => 'auth.jwt'], function () {
+
+    Route::post('logout', 'ApiController@logout');
+
+    Route::resource('/projects', 'ProjectsController');
+    
+    Route::resource('/lanes', 'LanesController');
+
 });
-
-Route::get('/', function() {
-    return 'hi';
-});
-
-Route::resource('/projects', 'ProjectsController');
-
-Route::resource('/lanes', 'LanesController');
