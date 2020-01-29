@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navigation = (props) => {
+  
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(!dropdownOpen);
@@ -44,6 +47,7 @@ const Navigation = (props) => {
           <NavLink href="/logout">Logout</NavLink>
         </NavItem>
       </Nav>
+      <ToastContainer autoClose={5000} />
     </div>
   );
 }

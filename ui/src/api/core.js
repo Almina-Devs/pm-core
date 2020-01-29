@@ -21,8 +21,8 @@ export const login = data => {
     return axiosInstance.post(`${apiUrl}login`, data);
 }
 
-export const logout = () => {
-    return axiosInstance.post(`${apiUrl}logout`);
+export const logout = data => {
+    return axiosInstance.post(`${apiUrl}logout`, data);
 }
 
 export const resgister = data => {

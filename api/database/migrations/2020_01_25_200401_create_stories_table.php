@@ -17,7 +17,7 @@ class CreateStoriesTable extends Migration
             $table->increments('id');
             $table->string('title', 255);
             $table->string('description', 1000)->nullable();
-            $table->string('lable', 100)->nullable();
+            $table->string('label', 100)->nullable();
             $table->boolean('draggable')->default(true);
             $table->json('metadata')->nullable();
             $table->integer('project_id')->nullable();

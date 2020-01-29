@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use JWTAuth;
 use Illuminate\Http\Request;
-use App\Models\Project;
+use App\Models\Story;
 
-class ProjectsController extends Controller
+class StoriesController extends Controller
 {
+
     /**
-     * Projects Controller Construct
+     * Story Controller Construct
      */
     public function __construct() {
         $this->user = JWTAuth::parseToken()->authenticate();
@@ -22,9 +23,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-
-        return response($projects, 200);
+        $stories = Story::all();
+        return response($stories, 200);
     }
 
     /**
@@ -35,20 +35,21 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        $newProject = new Project();
+        $newStory = new Story();
 
-        $newProject->name = $request->input('name');
-        $newProject->description = $request->input('description');
-        $newProject->start_date = $request->input('startDate');
-        $newProject->end_date = $request->input('endDate');
-        $newProject->active = $request->input('active');
+        $newStory->title = $request->input('title');
+        $newStory->description = $request->input('description');
+        $newStory->label = $request->input('label');
+        $newStory->draggable = $request->input('draggable');
+        $newStory->metadata = $request->input('metadata');
+        $newStory->project_id = $request->input('project_id');
 
-        $newProject->save();
+        $newStory->save();
 
-        if ($newProject) {
+        if ($newStory) {
             return response()->json([
                 'success' => true,
-                'project' => $newProject
+                'stories' => $newStory
             ]);
         } else {
             return response()->json([

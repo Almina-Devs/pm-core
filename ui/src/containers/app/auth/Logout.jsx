@@ -12,7 +12,12 @@ export default class Logout extends Component {
     }
 
     componentDidMount() {
-        logout().then(res => {
+
+        let data = {
+            'token' : localStorage.getItem('access_token')
+        }
+
+        logout(data).then(res => {
             console.log('logged out');
         }).catch(err => {
             console.log(err);

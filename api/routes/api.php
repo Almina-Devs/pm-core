@@ -30,4 +30,6 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     
     Route::resource('/lanes', 'LanesController');
 
+    Route::resource('/stories', 'StoriesController');
+
 });
