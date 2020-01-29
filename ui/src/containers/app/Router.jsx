@@ -14,6 +14,7 @@ import LanesList from '../lanes/LanesList';
 import Login from '../app/auth/Login';
 import Logout from '../app/auth/Logout';
 import Register from '../app/auth/Register';
+import PageNotFound from './PageNotFound';
   
 export default class Router extends Component {
     
@@ -49,7 +50,8 @@ export default class Router extends Component {
                         </Route>
                         <Route path="/Register" exact={true}>
                             <Register />
-                        </Route>                        
+                        </Route>
+                        <Route path="*" component={PageNotFound} />             
                     </Switch>
                 </Routes>
             </div>
