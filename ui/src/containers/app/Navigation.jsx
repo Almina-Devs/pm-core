@@ -14,23 +14,23 @@ const Navigation = (props) => {
         </NavItem>
         <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
           <DropdownToggle nav caret>
-            Projects
+            Core Admin
           </DropdownToggle>
           <DropdownMenu>
+            <DropdownItem header>Projects</DropdownItem>
             <a href="/projects">
               <DropdownItem>List</DropdownItem>
             </a>
-            <DropdownItem divider />
             <a href="/projects/create">
               <DropdownItem>Create</DropdownItem>
             </a>
             <DropdownItem divider />
             <DropdownItem header>Lanes</DropdownItem>
             <a href="/lanes">
-              <DropdownItem>Lanes</DropdownItem>
+              <DropdownItem>List</DropdownItem>
             </a>
             <a href="/lanes/create">
-              <DropdownItem>Create Lane</DropdownItem>
+              <DropdownItem>Create</DropdownItem>
             </a>
           </DropdownMenu>
         </Dropdown>

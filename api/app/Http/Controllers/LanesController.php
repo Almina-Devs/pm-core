@@ -23,8 +23,7 @@ class LanesController extends Controller
      */
     public function index()
     {
-        $lanes = Lanes::all();
-
+        $lanes = Lane::all();
         return response($lanes, 200);
     }
 
