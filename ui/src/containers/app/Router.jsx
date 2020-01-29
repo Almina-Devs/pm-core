@@ -13,6 +13,7 @@ import CreateLane from '../lanes/CreateLane';
 import LanesList from '../lanes/LanesList';
 import Login from '../app/auth/Login';
 import Logout from '../app/auth/Logout';
+import Register from '../app/auth/Register';
   
 export default class Router extends Component {
     
@@ -46,6 +47,9 @@ export default class Router extends Component {
                         <Route path="/logout" exact={true}>
                             <Logout />
                         </Route>
+                        <Route path="/Register" exact={true}>
+                            <Register />
+                        </Route>                        
                     </Switch>
                 </Routes>
             </div>

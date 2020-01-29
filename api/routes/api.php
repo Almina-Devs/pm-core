@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 
     Route::post('logout', 'ApiController@logout');
 
+    Route::resource('/organizations', 'OrganizationsController');
+
     Route::resource('/projects', 'ProjectsController');
     
     Route::resource('/lanes', 'LanesController');

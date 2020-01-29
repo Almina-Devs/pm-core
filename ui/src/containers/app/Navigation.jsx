@@ -46,6 +46,9 @@ const Navigation = (props) => {
         <NavItem>
           <NavLink href="/logout">Logout</NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink href="/register">Register</NavLink>
+        </NavItem>        
       </Nav>
       <ToastContainer autoClose={5000} />
     </div>

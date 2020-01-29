@@ -42,6 +42,7 @@ class ProjectsController extends Controller
         $newProject->start_date = $request->input('startDate');
         $newProject->end_date = $request->input('endDate');
         $newProject->active = $request->input('active');
+        $newProject->organization_id = $this->user->organization_id;
 
         $newProject->save();
 
@@ -56,7 +57,6 @@ class ProjectsController extends Controller
                 'message' => 'Sorry, there was an error creating the project.'
             ], 500);
         }
-
     }
 
     /**

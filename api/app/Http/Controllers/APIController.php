@@ -47,9 +47,7 @@ class APIController extends Controller
         $this->validate($request, [
             'token' => 'required'
         ]);
-
-        
-            
+    
         try {
             JWTAuth::invalidate($request->token);
 
@@ -75,6 +73,7 @@ class APIController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->organization_id = $request->organization_id;
         $user->save();
 
         if ($this->loginAfterSignUp) {

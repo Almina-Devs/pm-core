@@ -18,6 +18,7 @@ class CreateLanesTable extends Migration
             $table->string('title', 255);
             $table->string('label', 100)->nullable();
             $table->integer('project_id')->nullable();
+            $table->integer('organization_id');
             $table->timestamps();
         });
     }

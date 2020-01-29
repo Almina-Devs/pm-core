@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use JWTAuth;
 use Illuminate\Http\Request;
-use App\Models\Lane;
+use App\Models\Organization;
 
-class LanesController extends Controller
+class OrganizationsController extends Controller
 {
-    
     /**
-     * Projects Controller Construct
+     * Organizations Controller Construct
      */
     public function __construct() {
         $this->user = JWTAuth::parseToken()->authenticate();
@@ -23,8 +22,8 @@ class LanesController extends Controller
      */
     public function index()
     {
-        $lanes = Lane::all();
-        return response($lanes, 200);
+        $organizations = Organization::all();
+        return response($organizations, 200);
     }
 
     /**
@@ -35,26 +34,22 @@ class LanesController extends Controller
      */
     public function store(Request $request)
     {
-        $newLane = new Lane();
-        $newLane->title = $request->input('title');
-        $newLane->label = $request->input('label');
-        $newLane->project_id = $request->input('project_id');
-        $newLane->organization_id = $this->user->organization_id;
+        $newOrganization = new Organization();
+        $newOrganization->name = $request->input('name');
+        $newOrganization->status = 1;
+        $newOrganization->save();
 
-        $newLane->save();
-        
-        if ($newLane) {
+        if ($newOrganization) {
             return response()->json([
                 'success' => true,
-                'lane' => $newLane
+                'project' => $newOrganization
             ]);
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Sorry, there was an error creating the lane.'
+                'message' => 'Sorry, there was an error creating the project.'
             ], 500);
         }
-        
     }
 
     /**
@@ -65,9 +60,7 @@ class LanesController extends Controller
      */
     public function show($id)
     {
-        $lane = Lane::where('id', $id)->first();
-
-        return response($lane, 200);
+        //
     }
 
     /**

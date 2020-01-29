@@ -25,7 +25,7 @@ export const logout = data => {
     return axiosInstance.post(`${apiUrl}logout`, data);
 }
 
-export const resgister = data => {
+export const register = data => {
     return axiosInstance.post(`${apiUrl}register`, data);
 }
 
