@@ -7,7 +7,6 @@ const PrivateRoute = function ({component: Component, ...rest}) {
   // temp bug fix
   let authed = isAuthenticated();
 
-
     return (
       <Route
         {...rest}
