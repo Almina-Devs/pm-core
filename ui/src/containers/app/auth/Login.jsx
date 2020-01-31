@@ -34,12 +34,6 @@ export default class Login extends PureComponent {
 
     }
 
-    notify = () => {
-        toast.info("You're In!", {
-            autoClose : 5000
-        });
-    }
-
     render() {
 
         let { email, password } = this.state;
