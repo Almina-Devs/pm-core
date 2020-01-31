@@ -8,25 +8,29 @@ class ProjectList extends PureComponent {
         super(props)
 
         this.state = {
-            projects : []
+            projects : [],
+            statusCode : 0,
         }
     }
 
     componentDidMount() {
         get('projects').then((res) => {
-            this.setState({ projects : res.data });
+            this.setState({ 
+                projects : res.data,
+                statusCode : res.status
+            });
         }).catch(err => {
-            console.log(err);
+            window.location = "/error";
         });  
     }
 
     render() {
 
-        let { projects } = this.state;
+        let { projects, statusCode } = this.state;
 
         return (
             <React.Fragment>
-            <p>projects</p>
+            <p>projects - {statusCode}</p>
                 <div className="div-container__medium">
                     <Table>
                         <thead>
