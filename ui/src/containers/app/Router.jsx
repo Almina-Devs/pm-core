@@ -4,6 +4,7 @@ import {
     Switch,
     Route
   } from "react-router-dom";
+import PrivateRoute from './PrivateRoute';  
 import Navigation from './Navigation';
 import Dashboard from '../dashboard/Dashboard';
 import BoardView from '../board/BoardView';
@@ -25,34 +26,15 @@ export default class Router extends Component {
                 <Navigation />
                 <Routes>
                     <Switch>
-                        <Route path="/dashboard" exact={true}>
-                            <Dashboard />
-                        </Route>
-                        <Route path="/boards" exact={true}>
-                            <BoardView />
-                        </Route>
-                        <Route path="/projects" exact={true}>
-                            <ProjectList />
-                        </Route>
-                        <Route path="/projects/create" exact={true}>
-                            <CreateProject />
-                        </Route>
-                        <Route path="/lanes" exact={true}>
-                            <LanesList />
-                        </Route>
-                        <Route path="/lanes/create" exact={true}>
-                            <CreateLane />
-                        </Route>
-                        <Route path="/login" exact={true}>
-                            <Login />
-                        </Route>
-                        <Route path="/logout" exact={true}>
-                            <Logout />
-                        </Route>
-                        <Route path="/Register" exact={true}>
-                            <Register />
-                        </Route>
-                        <Route path="/error" component={ServerError} />                 
+                        <Route path="/dashboard" component={Dashboard} exact={true} />
+                        <PrivateRoute path="/boards" component={BoardView} exact={true} />
+                        <PrivateRoute path="/projects" component={ProjectList} exact={true} />
+                        <PrivateRoute path="/projects/create" component={CreateProject} exact={true} />
+                        <PrivateRoute path='/lanes' component={LanesList} exact={true} />
+                        <PrivateRoute path="/lanes/create" component={CreateLane} exact={true} />
+                        <Route path="/login" component={Login} exact={true} />
+                        <Route path="/logout" component={Logout} exact={true} />
+                        <Route path="/Register" component={Register} exact={true} />
                         <Route path="*" component={PageNotFound} />             
                     </Switch>
                 </Routes>

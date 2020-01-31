@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { logout } from '../../../api/core';
+import { ClearAccessToken } from './auth';
 
 export default class Logout extends Component {
 
@@ -21,7 +22,9 @@ export default class Logout extends Component {
             console.log('logged out');
         }).catch(err => {
             console.log(err);
-        })
+        }).finally(() => {
+            ClearAccessToken();
+        });
     }
     
     render() {
