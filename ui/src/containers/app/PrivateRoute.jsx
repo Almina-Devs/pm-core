@@ -4,7 +4,6 @@ import { isAuthenticated } from './auth/auth';
 
 const PrivateRoute = function ({component: Component, ...rest}) {
 
-  // temp bug fix
   let authed = isAuthenticated();
 
     return (

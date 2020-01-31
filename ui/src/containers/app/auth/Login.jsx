@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
 import { login } from '../../../api/core';
-import { toast } from 'react-toastify';
 
 export default class Login extends PureComponent {
     constructor(props) {
@@ -28,10 +27,9 @@ export default class Login extends PureComponent {
 
         login(data).then((res) => {
             localStorage.setItem('access_token', res.data.token);
-            this.notify();
-            //window.location = '/dashboard';
+            window.location = '/dashboard';
         }).catch((err) => {
-            console.log(err);
+            
         })
 
     }
