@@ -28,6 +28,8 @@ class BoardView extends PureComponent {
     render() {
 
         let { data, stories } = this.state;
+
+        console.log(stories)
         
         if(data) {
             data.lanes[0].cards = stories;

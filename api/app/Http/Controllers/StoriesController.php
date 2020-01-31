@@ -40,9 +40,10 @@ class StoriesController extends Controller
         $newStory->title = $request->input('title');
         $newStory->description = $request->input('description');
         $newStory->label = $request->input('label');
-        $newStory->draggable = $request->input('draggable');
-        $newStory->metadata = $request->input('metadata');
+        $newStory->draggable = true;
+        $newStory->metadata = "[]";
         $newStory->project_id = $request->input('project_id');
+        $newStory->organization_id = $this->user->organization_id;
 
         $newStory->save();
 

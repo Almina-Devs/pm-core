@@ -2,14 +2,21 @@ import React, { PureComponent } from 'react'
 import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
 import { post, get } from '../../api/core';
 
-class CreateStory extends PureComponent {
+export default class CreateStory extends PureComponent {
     constructor(props) {
         super(props)
 
         this.state = {
             title : '',
             label : '',
+            projects : [],
         }
+    }
+
+    componentDidMount() {
+        get('projects').then((res) => {
+            this.setState({ projects :res.data });
+        });
     }
 
     handleChange = (evt) => {
@@ -75,5 +82,3 @@ class CreateStory extends PureComponent {
         )
     }
 }
-
-export default CreateLane

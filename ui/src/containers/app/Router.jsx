@@ -15,6 +15,8 @@ import LanesList from '../lanes/LanesList';
 import Login from '../app/auth/Login';
 import Logout from '../app/auth/Logout';
 import Register from '../app/auth/Register';
+import StoryList from '../stories/StoryList';
+import CreateStory from '../stories/CreateStory';
 import PageNotFound from './PageNotFound';
 import ServerError from './ServerError';
   
@@ -32,9 +34,12 @@ export default class Router extends Component {
                         <PrivateRoute path="/projects/create" component={CreateProject} exact={true} />
                         <PrivateRoute path='/lanes' component={LanesList} exact={true} />
                         <PrivateRoute path="/lanes/create" component={CreateLane} exact={true} />
+                        <PrivateRoute path="/stories" component={StoryList} exact={true} />
+                        <PrivateRoute path="/stories/create" component={CreateStory} exact={true} />
                         <Route path="/login" component={Login} exact={true} />
                         <Route path="/logout" component={Logout} exact={true} />
                         <Route path="/Register" component={Register} exact={true} />
+                        <Route path="/error" component={ServerError} exact={true} />
                         <Route path="*" component={PageNotFound} />             
                     </Switch>
                 </Routes>
