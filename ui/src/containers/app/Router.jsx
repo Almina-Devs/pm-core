@@ -15,6 +15,7 @@ import Login from '../app/auth/Login';
 import Logout from '../app/auth/Logout';
 import Register from '../app/auth/Register';
 import PageNotFound from './PageNotFound';
+import ServerError from './ServerError';
   
 export default class Router extends Component {
     
@@ -51,6 +52,7 @@ export default class Router extends Component {
                         <Route path="/Register" exact={true}>
                             <Register />
                         </Route>
+                        <Route path="/error" component={ServerError} />                 
                         <Route path="*" component={PageNotFound} />             
                     </Switch>
                 </Routes>
