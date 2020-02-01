@@ -1,0 +1,15 @@
+@mixin flexCenter($align) {
+    display: flex;
+    justify-content: center;
+    align-items: $align;
+}
+
+@mixin divBase {
+    height: auto;
+    margin : auto;
+    border: 1px;
+    border-style: solid;
+    border-color: $primaryBorder;
+    border-radius: 5px;
+    padding: 20px;    
+}

@@ -1,40 +1,34 @@
+@import './variables';
+@import './mixins';
+
 .App {
     text-align: center;
 }
 
 .navigation {
+    @include flexCenter(center);
     padding: 25px;
 }
 
 .div-container__medium {
+    @include divBase();
     width: 50%;
-    height: auto;
-    margin : auto;
-    border: 1px;
-    border-style: solid;
-    border-color: lightblue;
-    border-radius: 5px;
-    padding: 10px;
-  }
+}
   
-  a { 
-    color: darkgray;
-    text-decoration: none; 
+a { 
+  color: $primaryLink;
+  text-decoration: none;
+  &:hover {
+      text-shadow: 1px 1px 5px $primaryHover;
   }
-  
-  a:hover {
-    text-shadow: 1px 1px 5px lightblue;
-  }
-  
-  a:active {
-    color: navy;
-  }
-  
-  .col-left {
-    padding: 10px;
-    text-align: right;
-  }
-  .col-right {
-    padding: 10px;
-    text-align: left;
-  }
+}
+    
+.col-left {
+  padding: 10px;
+  text-align: right;
+}
+
+.col-right {
+  padding: 10px;
+  text-align: left;
+}
