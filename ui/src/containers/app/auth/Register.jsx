@@ -11,6 +11,7 @@ export default class Register extends PureComponent {
             name : '',
             email : '',
             password : '',
+            registered : false,
         }
     }
 
@@ -32,9 +33,9 @@ export default class Register extends PureComponent {
         register(data).then((res) => {
             localStorage.setItem('access_token', res.data.token);
             this.notify();
-            //window.location = '/dashboard';
+            this.setState({ registered : true });
         }).catch((err) => {
-            console.log(err);
+            toast('There was a problem registering.  Please try again.');
         })
 
     }
@@ -47,32 +48,44 @@ export default class Register extends PureComponent {
 
     render() {
 
-        let { name, email, password } = this.state;
+        let { name, email, password, registered } = this.state;
 
         return (
             <React.Fragment>
                 <div className="div-container__medium">
-                    <p>Register</p>
-                    <Form>
-                        <FormGroup>
-                            <Row>
-                                <Col className="col-left">
-                                    <Input type="text" name="name" value={name} onChange={this.handleChange} placeholder="username" />
-                                </Col>
-                            </Row>                            
-                            <Row>
-                                <Col className="col-left">
-                                    <Input type="text" name="email" value={email} onChange={this.handleChange} placeholder="email" />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className="col-left">
-                                    <Input type="password" name="password" value={password} onChange={this.handleChange} placeholder="password" />
-                                </Col>
-                            </Row>
-                            <Button onClick={this.handleSubmit}>Submit</Button>
-                        </FormGroup>
-                    </Form>
+                    {!registered ?
+                        <React.Fragment>
+                            <p>Register</p>
+                            <Form>
+                                <FormGroup>
+                                    <Row>
+                                        <Col className="col-left">
+                                            <Input type="text" name="name" value={name} onChange={this.handleChange} placeholder="username" />
+                                        </Col>
+                                    </Row>                            
+                                    <Row>
+                                        <Col className="col-left">
+                                            <Input type="text" name="email" value={email} onChange={this.handleChange} placeholder="email" />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col className="col-left">
+                                            <Input type="password" name="password" value={password} onChange={this.handleChange} placeholder="password" />
+                                        </Col>
+                                    </Row>
+                                    <Button onClick={this.handleSubmit}>Submit</Button>
+                                </FormGroup>
+                            </Form>
+                        </React.Fragment>
+                    :
+                        <React.Fragment>
+                            <h3>Success!  You are now registered!</h3>
+                            <a href="/dashboard">
+                                <Button>Go to the dashboard</Button>
+                            </a>
+                        </React.Fragment>
+                    }
+                    
                 </div>
             </React.Fragment>
         )
