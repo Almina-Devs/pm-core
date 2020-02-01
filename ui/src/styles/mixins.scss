@@ -1,7 +1,8 @@
 @mixin flexCenter($align) {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: $align;
+    padding: 30px 10%;
 }
 
 @mixin divBase {

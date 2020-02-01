@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { isAuthenticated } from '../app/auth/auth';
 
 const Navigation = (props) => {
   
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [authDropDown, setAuthDropDown] = useState(false);
 
   const toggle = () => setDropdownOpen(!dropdownOpen);
+  const authToggle = () => setAuthDropDown(!authDropDown);
 
   return (
     <div className="navigation">
+      
+      <i className="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true"></i>
+      
       <Nav>
         <NavItem>
           <NavLink href="/dashboard" active>Dashboard</NavLink>
@@ -49,17 +53,37 @@ const Navigation = (props) => {
         <NavItem>
           <NavLink href="/boards">Boards</NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink href="/login">Login</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/logout">Logout</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/register">Register</NavLink>
-        </NavItem>        
       </Nav>
-      <ToastContainer autoClose={5000} />
+
+      <Nav>
+      <Dropdown nav isOpen={authDropDown} toggle={authToggle}>
+          <DropdownToggle nav caret>
+            <i className="fas fa-user-lock"></i>
+          </DropdownToggle>
+          <DropdownMenu>
+            {!isAuthenticated() ?
+              <React.Fragment>
+                <a href="/login">
+                  <DropdownItem>Login</DropdownItem>
+                </a>
+              </React.Fragment>
+            :
+              <React.Fragment>
+                <a href="/logout">
+                  <DropdownItem>Logout</DropdownItem>
+                </a>
+
+              </React.Fragment>
+            }
+            <DropdownItem divider />
+            <a href="/Register">
+              <DropdownItem>Register</DropdownItem>
+            </a>
+          </DropdownMenu>
+        </Dropdown>
+      </Nav>
+      
+      
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
 import { login } from '../../../api/core';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class Login extends PureComponent {
     constructor(props) {
@@ -20,6 +22,12 @@ export default class Login extends PureComponent {
     handleSubmit = () => {
 
         let { email, password } = this.state;
+
+        if(email === '' || password === '') {
+            toast('Email and Password are requried');
+            return;
+        }
+        
         let data = {
             email,
             password
@@ -29,7 +37,7 @@ export default class Login extends PureComponent {
             localStorage.setItem('access_token', res.data.token);
             window.location = '/dashboard';
         }).catch((err) => {
-            
+            toast('There was a problem logging in.');
         })
 
     }
@@ -58,6 +66,7 @@ export default class Login extends PureComponent {
                         </FormGroup>
                     </Form>
                 </div>
+                <ToastContainer autoClose={5000} />
             </React.Fragment>
         )
     }
