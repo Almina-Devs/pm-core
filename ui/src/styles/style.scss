@@ -19,6 +19,10 @@
     @include flexCenter(center);
 }
 
+.dropdown__togggle {
+    color: $primaryLink;
+}
+
 .div-container__medium {
     @include divBase();
     width: 50%;

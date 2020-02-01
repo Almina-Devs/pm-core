@@ -20,7 +20,7 @@ const Navigation = (props) => {
           <NavLink href="/dashboard" active>Dashboard</NavLink>
         </NavItem>
         <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle nav caret>
+          <DropdownToggle nav caret className="dropdown__togggle">
             Core Admin
           </DropdownToggle>
           <DropdownMenu>
@@ -57,7 +57,7 @@ const Navigation = (props) => {
 
       <Nav>
       <Dropdown nav isOpen={authDropDown} toggle={authToggle}>
-          <DropdownToggle nav caret>
+          <DropdownToggle nav caret className="dropdown__togggle">
             <i className="fas fa-user-lock"></i>
           </DropdownToggle>
           <DropdownMenu>

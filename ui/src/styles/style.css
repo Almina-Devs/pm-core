@@ -23,6 +23,10 @@
   padding: 30px 10%;
 }
 
+.dropdown__togggle {
+  color: darkgray;
+}
+
 .div-container__medium {
   height: auto;
   margin: auto;
