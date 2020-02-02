@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\StoryResource;
 
-class StoryResource extends JsonResource
+class BoardResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +18,7 @@ class StoryResource extends JsonResource
         $response = [
             "id" => $this->id,
             "title" => $this->title,
-            "description" => $this->description
+            "cards" => StoryResource::collection($this->stories)
         ];
 
         return $response;

@@ -21,6 +21,7 @@ class CreateStoriesTable extends Migration
             $table->boolean('draggable')->default(true);
             $table->json('metadata')->nullable();
             $table->integer('project_id')->nullable();
+            $table->integer('lane_id');
             $table->integer('organization_id');
             $table->timestamps();
         });

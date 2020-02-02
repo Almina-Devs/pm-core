@@ -1,50 +1,39 @@
-import React, { PureComponent } from 'react';
-import Board from 'react-trello';
+import React, { Component } from 'react'
+import Board from '@lourenci/react-kanban'
 import { get } from '../../api/core';
 
-class BoardView extends PureComponent {
+export default class componentName extends Component {
+
     constructor(props) {
         super(props)
-
+        
         this.state = {
-            data : null,
-            stories : [],
+            board : {
+              lanes : []
+            },   
         }
-    }
 
+    }
+    
     componentDidMount() {
-        get('lanes').then(res => {
-            let data = {
-                lanes : res.data
-            }
-            this.setState({ data });
+        get('boards').then( res => {
+            let { board } = this.state;
+            board.lanes = res.data;
+            this.setState({ board });
         });
-
-        get('stories').then(res => {
-          this.setState({ stories : res.data });
-        })
     }
-
+    
     render() {
 
-        let { data, stories } = this.state;
-
-        console.log(stories)
+        let { board } = this.state;
         
-        if(data) {
-            data.lanes[0].cards = stories;
-        }
-
         return (
-            <React.Fragment>
-                <p>Board</p>
-                {data && stories &&
-                  <Board data={data ? data : []} style={{backgroundColor: 'white'}} />
+            <div>
+                {board &&
+                  <Board initialBoard={board} />
                 }
                 
-            </React.Fragment>
+            </div>
         )
     }
 }
-
-export default BoardView

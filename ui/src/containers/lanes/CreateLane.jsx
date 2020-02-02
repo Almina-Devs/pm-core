@@ -35,7 +35,7 @@ class CreateLane extends PureComponent {
         }
 
         post('lanes', data).then((res) => {
-            console.log(res.data);
+            window.location = '/lanes';
         }).catch((err) => {
             console.log(err);
         })

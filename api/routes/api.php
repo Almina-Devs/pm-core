@@ -34,4 +34,6 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 
     Route::resource('/stories', 'StoriesController');
 
+    Route::get('/boards', 'BoardsController@index');
+
 });

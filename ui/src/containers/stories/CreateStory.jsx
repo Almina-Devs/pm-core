@@ -10,13 +10,23 @@ export default class CreateStory extends PureComponent {
             title : '',
             label : '',
             projects : [],
+            project_id : 0,
+            lanes : [],
+            lane_id : 0,
         }
     }
 
     componentDidMount() {
+
         get('projects').then((res) => {
             this.setState({ projects :res.data });
         });
+        
+        get('lanes').then((res) => {
+            this.setState({ lanes :res.data });
+            console.log('lanes', res.data);
+        });
+
     }
 
     handleChange = (evt) => {
@@ -26,15 +36,16 @@ export default class CreateStory extends PureComponent {
 
     handleSubmit = () => {
 
-        let { title, label, project_id } = this.state;
+        let { title, label, project_id, lane_id } = this.state;
         let data = {
             title,
             label,
-            project_id
+            project_id,
+            lane_id
         }
 
         post('stories', data).then((res) => {
-            console.log(res.data);
+            window.location = '/stories';
         }).catch((err) => {
             console.log(err);
         })
@@ -43,7 +54,7 @@ export default class CreateStory extends PureComponent {
 
     render() {
 
-        let { title, label, project_id, projects } = this.state;
+        let { title, label, project_id, projects, lanes, lane_id } = this.state;
 
         return (
             <React.Fragment>
@@ -53,7 +64,7 @@ export default class CreateStory extends PureComponent {
                         <FormGroup>
                             <Row>
                                 <Col className="col-left">
-                                    <Input type="text" name="title" value={title} onChange={this.handleChange} placeholder="lane title" />
+                                    <Input type="text" name="title" value={title} onChange={this.handleChange} placeholder="story title" />
                                 </Col>
                             </Row>
                             <Row>
@@ -74,6 +85,20 @@ export default class CreateStory extends PureComponent {
                                     </select>
                                 </Col>
                             </Row>
+                            <Row>
+                                <Col className="col-left">
+                                    <p>Lanes:</p>
+                                </Col>
+                                <Col className="col-right">
+                                    <select name="lane_id" value={lane_id} onChange={this.handleChange}>
+                                        <option value="-1">select a lane</option>
+                                        {lanes.map(lane =>
+                                            <option key={lane.id} value={lane.id}>{lane.title}</option>
+                                        )};
+                                    </select>
+                                </Col>
+                            </Row>
+
                             <Button onClick={this.handleSubmit}>Submit</Button>
                         </FormGroup>
                     </Form>
