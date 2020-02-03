@@ -22,6 +22,12 @@ export default class componentName extends Component {
             this.setState({ board });
         });
     }
+
+    handleCardDragEnd = (evt) => {
+
+      console.log('end', evt);
+
+    }
     
     render() {
 
@@ -30,7 +36,7 @@ export default class componentName extends Component {
         return (
             <div>
                 {board &&
-                  <Board initialBoard={board} />
+                  <Board initialBoard={board} onCardDragEnd={this.handleCardDragEnd} />
                 }
                 
             </div>
