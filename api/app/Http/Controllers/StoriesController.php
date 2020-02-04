@@ -81,7 +81,33 @@ class StoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $story = Story::where('id', $id);
+
+        $story->title = $request->input('title');
+        $story->description = $request->input('description');
+        $story->label = $request->input('label');
+        $story->draggable = true;
+        $story->metadata = "[]";
+        $story->project_id = $request->input('project_id');
+        $story->lane_id = $request->input('lane_id');
+        $story->organization_id = $this->user->organization_id;
+
+        $story->save();
+
+        if ($story) {
+            return response()->json([
+                'success' => true,
+                'stories' => $story
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error updating the story.'
+            ], 500);
+        }
+
+
+
     }
 
     /**

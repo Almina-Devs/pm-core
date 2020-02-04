@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Board from '@lourenci/react-kanban'
-import { get } from '../../api/core';
+import { get, put } from '../../api/core';
 
 export default class componentName extends Component {
 
@@ -23,9 +23,24 @@ export default class componentName extends Component {
         });
     }
 
-    handleCardDragEnd = (evt) => {
+    handleCardDragEnd = (data) => {
+        data.lanes.forEach( lane => {
+            lane.cards.forEach( card => {
+                
+                let data = {
+                    id : card.id,
+                    title : card.title,
+                    lane_id : lane.id
+                };
 
-      console.log('end', evt);
+                put(`stories/${card.id}`, data).then( res => {
+                    console.log('success', data);
+                }).catch( err => {
+                    console.log(err);
+                })
+                
+            });
+        });
 
     }
     

@@ -37,3 +37,7 @@ export const post = (endpoint, data) => {
     return axiosInstance.post(`${apiUrl}${endpoint}`, data);
 }
 
+export const put = (endpoint, data) => {
+    return axiosInstance.put(`${apiUrl}${endpoint}`, data);
+}
+
