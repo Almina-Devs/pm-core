@@ -47,7 +47,7 @@ export default class CreateProject extends Component {
         }
 
         post('projects', data).then((res) => {
-            console.log(res);
+            window.location('/projects');
         }).catch((err) => {
             console.log(err);
         })
