@@ -47,7 +47,10 @@ const Navigation = (props) => {
             <a href="/stories/create">
               <DropdownItem>Create</DropdownItem>
             </a>
-
+            <DropdownItem header>Users</DropdownItem>
+            <a href="/users">
+              <DropdownItem>List</DropdownItem>
+            </a>
           </DropdownMenu>
         </Dropdown>
         <NavItem>

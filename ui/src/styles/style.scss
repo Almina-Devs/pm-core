@@ -27,7 +27,13 @@
     @include divBase();
     width: 50%;
 }
-  
+
+.div-container__large {
+    //@include divBase();
+    width: 65%;
+}
+
+
 a { 
   color: $primaryLink;
   text-decoration: none;

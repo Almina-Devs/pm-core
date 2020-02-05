@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { get } from '../../api/core';
-import { Table } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 export default class StoryList extends PureComponent {
     constructor(props) {
@@ -23,37 +23,42 @@ export default class StoryList extends PureComponent {
         });  
     }
 
+    handleEdit = (evt) => {
+
+    }
+
+    handleDelete = (evt) => {
+
+    }
+
     render() {
 
         let { stories, statusCode } = this.state;
 
         return (
             <React.Fragment>
-            <p>stories - {statusCode}</p>
-                <div className="div-container__medium">
-                    <Table>
-                        <thead>
-                            <tr>
-                            <th>id</th>
-                            <th>title</th>
-                            <th>description</th>
-                            <th>label</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                stories.map(project => {
-                                    return <tr key={project.id}>
-                                        <td>{project.id}</td>
-                                        <td>{project.title}</td>
-                                        <td>{project.description}</td>
-                                        <td>{project.label}</td>
-                                    </tr>
-                                })
-                            }
-                        </tbody>
-                    </Table>
-                </div>         
+                <div className="div-container__large">
+                    <p>stories - {statusCode}</p>
+                    {
+                        stories.map(project => {
+                            return <Row key={project.id}>
+                                <Col>{project.id}</Col>
+                                <Col>{project.title}</Col>
+                                <Col>{project.description}</Col>
+                                <Col>{project.label}</Col>
+                                <Col>
+                                    <i class="fas fa-edit" id={project.id} onClick={this.handleEdit}></i>
+                                </Col>
+                                <Col>
+                                    <i class="fas fa-key" id={project.id} onClick={this.handleEdit}></i>
+                                </Col>
+                                <Col>
+                                    <i class="fas fa-trash-alt" id={project.id} onClick={this.handleDelete}></i>
+                                </Col>
+                            </Row>
+                        })
+                    }
+                </div>
             </React.Fragment> 
         )
     }
