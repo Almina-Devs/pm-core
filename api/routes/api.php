@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 Route::post('login', 'ApiController@login');
 Route::post('register', 'ApiController@register');
 
@@ -33,6 +29,8 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::resource('/lanes', 'LanesController');
 
     Route::resource('/stories', 'StoriesController');
+
+    Route::resource('/users', 'UsersController');
 
     Route::get('/boards', 'BoardsController@index');
 
