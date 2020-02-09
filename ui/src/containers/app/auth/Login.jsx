@@ -35,9 +35,18 @@ export default class Login extends PureComponent {
 
         login(data).then((res) => {
             localStorage.setItem('access_token', res.data.token);
-            window.location = '/dashboard';
+
+            let { state } = this.props.location;
+
+            if(state && state.from) {
+                window.location = state.from.pathname;    
+            } else {
+                window.location = '/dashboard';
+            }
+
         }).catch((err) => {
             toast('There was a problem logging in.');
+            console.log(err)
         })
 
     }

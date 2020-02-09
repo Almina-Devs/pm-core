@@ -29,6 +29,7 @@ export default class Router extends Component {
                 <Navigation />
                 <Routes>
                     <Switch>
+                        <Route path="/" component={Dashboard} exact={true} />
                         <Route path="/dashboard" component={Dashboard} exact={true} />
                         <PrivateRoute path="/boards" component={BoardView} exact={true} />
                         <PrivateRoute path="/projects" component={ProjectList} exact={true} />

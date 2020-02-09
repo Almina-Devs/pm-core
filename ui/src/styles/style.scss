@@ -29,8 +29,11 @@
 }
 
 .div-container__large {
-    //@include divBase();
-    width: 65%;
+    border: 1px;
+    border-style: solid;
+    border-color: $primaryBorder;
+    border-radius: 5px;
+    width : 500px;
 }
 
 

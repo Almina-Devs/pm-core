@@ -37,23 +37,17 @@ export default class StoryList extends PureComponent {
 
         return (
             <React.Fragment>
-                <div className="div-container__large">
-                    <p>stories - {statusCode}</p>
+                <div className="div-container__medium">
                     {
                         stories.map(project => {
                             return <Row key={project.id}>
-                                <Col>{project.id}</Col>
+                                <Col md={1}>{project.id}</Col>
                                 <Col>{project.title}</Col>
-                                <Col>{project.description}</Col>
-                                <Col>{project.label}</Col>
-                                <Col>
-                                    <i class="fas fa-edit" id={project.id} onClick={this.handleEdit}></i>
+                                <Col md={1}>
+                                    <i className="fas fa-edit" id={project.id} onClick={this.handleEdit}></i>
                                 </Col>
-                                <Col>
-                                    <i class="fas fa-key" id={project.id} onClick={this.handleEdit}></i>
-                                </Col>
-                                <Col>
-                                    <i class="fas fa-trash-alt" id={project.id} onClick={this.handleDelete}></i>
+                                <Col md={1}>
+                                    <i className="fas fa-trash-alt" id={project.id} onClick={this.handleDelete}></i>
                                 </Col>
                             </Row>
                         })
