@@ -56,7 +56,7 @@ class StoriesController extends Controller
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Sorry, there was an error creating the project.'
+                'message' => 'Sorry, there was an error creating the story.'
             ], 500);
         }
 
@@ -70,7 +70,22 @@ class StoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $story = Story::where('id', $id)
+                      ->where('organization_id', $this->user->organization_id)
+                      ->first();
+
+        if ($story) {
+            return response()->json([
+                'success' => true,
+                'story' => $story
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error getting the story.'
+            ], 500);
+        }
+            
     }
 
     /**

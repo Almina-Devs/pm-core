@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
-import { post, get } from '../../api/core';
+import { post, get, put } from '../../api/core';
 
-export default class CreateStory extends PureComponent {
+export default class Story extends PureComponent {
     constructor(props) {
         super(props)
 
@@ -13,10 +13,13 @@ export default class CreateStory extends PureComponent {
             project_id : 0,
             lanes : [],
             lane_id : 0,
+            id : this.props.match.params === {} ? '' : this.props.match.params.id,
         }
     }
 
     componentDidMount() {
+
+        let { id } = this.state;
 
         get('projects').then((res) => {
             this.setState({ projects :res.data });
@@ -24,11 +27,24 @@ export default class CreateStory extends PureComponent {
         
         get('lanes').then((res) => {
             this.setState({ lanes :res.data });
-            console.log('lanes', res.data);
         });
 
-    }
+        if(id !== undefined) {
+            get(`stories/${id}`).then(res => {
+                let { title, description, label, project_id, lane_id } = res.data.story;
+                this.setState({
+                    title,
+                    description,
+                    label,
+                    project_id,
+                    lane_id
+                });
 
+            });
+        }
+
+    }
+    
     handleChange = (evt) => {
         let { name, value } = evt.target;
         this.setState({ [name] : value });
@@ -36,7 +52,7 @@ export default class CreateStory extends PureComponent {
 
     handleSubmit = () => {
 
-        let { title, label, project_id, lane_id } = this.state;
+        let { title, label, project_id, lane_id, id } = this.state;
         let data = {
             title,
             label,
@@ -44,22 +60,31 @@ export default class CreateStory extends PureComponent {
             lane_id
         }
 
-        post('stories', data).then((res) => {
-            window.location = '/stories';
-        }).catch((err) => {
-            console.log(err);
-        })
-
+        if(id === undefined) {
+            post('stories', data).then((res) => {
+                window.location = '/stories';
+            }).catch((err) => {
+                console.log(err);
+            });
+        } else {
+            put('stories', data).then(res => {
+                window.location = '/stories';
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
     }
 
     render() {
 
-        let { title, label, project_id, projects, lanes, lane_id } = this.state;
+        let { title, label, project_id, projects, lanes, lane_id, id } = this.state;
+
+        console.log('id', id)
 
         return (
             <React.Fragment>
                 <div className="div-container__medium">
-                    <p>New Story</p>
+                    <p>{id == undefined ? 'New' : 'Edit' }  Story Details</p>
                     <Form>
                         <FormGroup>
                             <Row>
