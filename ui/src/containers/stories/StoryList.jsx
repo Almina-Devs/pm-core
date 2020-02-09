@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
-import { get } from '../../api/core';
+import { get, deleteResource } from '../../api/core';
 import { Row, Col } from 'reactstrap';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 export default class StoryList extends PureComponent {
     constructor(props) {
@@ -23,13 +25,28 @@ export default class StoryList extends PureComponent {
         });  
     }
 
-    handleEdit = (evt) => {
-
-    }
-
     handleDelete = (evt) => {
-
+        confirmAlert({
+            title: 'Delete Story',
+            message: 'Are you sure to do this.',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: () => {
+                    deleteResource(`stories/${evt.target.id}`).then(res => {
+                        console.log('res', res.data)
+                    });
+                }
+              },
+              {
+                label: 'No',
+                onClick: () => alert('Click No')
+              }
+            ]
+          });
     }
+
+
 
     render() {
 
@@ -45,7 +62,7 @@ export default class StoryList extends PureComponent {
                                 <Col>{story.title}</Col>
                                 <Col md={1}>
                                     <a href={`/stories/edit/${story.id}`}>
-                                        <i className="fas fa-edit" id={story.id} onClick={this.handleEdit}></i>
+                                        <i className="fas fa-edit" id={story.id} ></i>
                                     </a>
                                 </Col>
                                 <Col md={1}>

@@ -36,7 +36,6 @@
     width : 500px;
 }
 
-
 a { 
   color: $primaryLink;
   text-decoration: none;
@@ -57,4 +56,8 @@ a:visited {
 .col-right {
   padding: 10px;
   text-align: left;
+}
+
+i {
+    cursor: pointer;
 }

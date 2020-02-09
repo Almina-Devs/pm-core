@@ -41,3 +41,7 @@ export const put = (endpoint, data) => {
     return axiosInstance.put(`${apiUrl}${endpoint}`, data);
 }
 
+export const deleteResource = (endpoint) =>{
+    return axiosInstance.delete(`${apiUrl}${endpoint}`);
+}
+

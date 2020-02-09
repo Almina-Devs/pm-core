@@ -132,6 +132,22 @@ class StoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $story = Story::where('id', $id)
+                      ->where('organization_id', $this->user->organization_id)
+                      ->first();
+                      
+        $story->delete();
+        
+        if ($story) {
+            return response()->json([
+                'success' => true,
+                'story' => $story
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error deleting the story.'
+            ], 500);
+        }
     }
 }
