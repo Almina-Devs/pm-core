@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { get } from '../../api/core';
-import { Table } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import moment from 'moment';
 
 class ProjectList extends PureComponent {
@@ -30,35 +30,31 @@ class ProjectList extends PureComponent {
 
         return (
             <React.Fragment>
+                
             <p>projects - {statusCode}</p>
-                <div className="div-container__medium">
-                    <Table>
-                        <thead>
-                            <tr>
-                            <th>id</th>
-                            <th>name</th>
-                            <th>description</th>
-                            <th>start</th>
-                            <th>end</th>
-                            <th>status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                projects.map(project => {
-                                    return <tr key={project.id}>
-                                        <td>{project.id}</td>
-                                        <td>{project.name}</td>
-                                        <td>{project.description}</td>
-                                        <td>{moment(project.start_date).format('MM/DD/YYYY')}</td>
-                                        <td>{moment(project.end_date).format('MM/DD/YYYY')}</td>
-                                        <td>{project.active ? 'active' : 'inactive'}</td>
-                                    </tr>
-                                })
-                            }
-                        </tbody>
-                    </Table>
-                </div>         
+            <div className="div-container__large">
+                {
+                    projects.map(project => {
+                        return <Row key={project.id}>
+                            <Col md={1}>{project.id}</Col>
+                            <Col>{project.name}</Col>
+                            <Col>{project.description}</Col>
+                            <Col>{moment(project.start_date).format('MM/DD/YYYY')}</Col>
+                            <Col>{moment(project.end_date).format('MM/DD/YYYY')}</Col>
+                            <Col>{project.active ? 'active' : 'inactive'}</Col>
+                            <Col md={1}>
+                                <a href={`/projects/edit/${project.id}`}>
+                                    <i className="fas fa-edit" id={project.id} ></i>
+                                </a>
+                            </Col>
+                            <Col md={1}>
+                                <i className="fas fa-trash-alt" id={project.id} onClick={this.handleDelete}></i>
+                            </Col>
+
+                        </Row>
+                    })
+                }
+            </div>
             </React.Fragment> 
         )
     }

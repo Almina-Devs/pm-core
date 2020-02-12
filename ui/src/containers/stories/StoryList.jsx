@@ -50,7 +50,7 @@ export default class StoryList extends PureComponent {
 
     render() {
 
-        let { stories, statusCode } = this.state;
+        let { stories } = this.state;
 
         return (
             <React.Fragment>

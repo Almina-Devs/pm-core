@@ -38,6 +38,17 @@
   width: 50%;
 }
 
+.div-container__large {
+  height: auto;
+  margin: auto;
+  border: 1px;
+  border-style: solid;
+  border-color: lightgray;
+  border-radius: 5px;
+  padding: 20px;
+  width: 75%;
+}
+
 a {
   color: darkgray;
   text-decoration: none;
