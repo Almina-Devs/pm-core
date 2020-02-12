@@ -60,6 +60,7 @@ export default class StoryList extends PureComponent {
                             return <Row key={story.id}>
                                 <Col md={1}>{story.id}</Col>
                                 <Col>{story.title}</Col>
+                                <Col>{story.label}</Col>
                                 <Col md={1}>
                                     <a href={`/stories/edit/${story.id}`}>
                                         <i className="fas fa-edit" id={story.id} ></i>

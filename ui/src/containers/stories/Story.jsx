@@ -37,7 +37,8 @@ export default class Story extends PureComponent {
                     description,
                     label,
                     project_id,
-                    lane_id
+                    lane_id,
+                    id
                 });
 
             });
@@ -67,7 +68,7 @@ export default class Story extends PureComponent {
                 console.log(err);
             });
         } else {
-            put('stories', data).then(res => {
+            put(`stories/${id}`, data).then(res => {
                 window.location = '/stories';
             }).catch((err) => {
                 console.log(err);
@@ -78,8 +79,6 @@ export default class Story extends PureComponent {
     render() {
 
         let { title, label, project_id, projects, lanes, lane_id, id } = this.state;
-
-        console.log('id', id)
 
         return (
             <React.Fragment>
