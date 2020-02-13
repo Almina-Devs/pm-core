@@ -29,7 +29,7 @@ export default class Project extends Component {
     }
 
     setEndDate = (date) => {
-        this.setState({ endDate : moment(date).format("YYYY-MM-DD") });
+        this.setState({ endDate : moment(date).format("YYYY-MM-DD") },);
     }
 
     handleSubmit = (evt) => {
@@ -68,7 +68,7 @@ export default class Project extends Component {
                         </Row>
                         <Row>
                             <Col className="col-left">
-                                <Input type="textarea" name="description" placeholder="description" rows="4" />
+                                <Input type="textarea" name="description" onChange={this.handleChange} placeholder="description" rows="4" />
                             </Col>
                         </Row>
                         <Row>
@@ -84,7 +84,7 @@ export default class Project extends Component {
                                 End Date: 
                             </Col>
                             <Col className="col-right">
-                                <DayPickerInput name="endDate" format="MM/DD/YYYY" onDayChange={day => this.setStartDate(day)} />
+                                <DayPickerInput name="endDate" format="MM/DD/YYYY" onDayChange={day => this.setEndDate(day)} />
                             </Col>
                         </Row>
                         <Button onClick={this.handleSubmit}>Submit</Button>
