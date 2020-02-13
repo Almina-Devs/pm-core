@@ -34,6 +34,7 @@ export default class Router extends Component {
                         <PrivateRoute path="/boards" component={BoardView} exact={true} />
                         <PrivateRoute path="/projects" component={ProjectList} exact={true} />
                         <PrivateRoute path="/projects/create" component={Project} exact={true} />
+                        <PrivateRoute path="/projects/edit/:id" component={Project} exact={true} />
                         <PrivateRoute path='/lanes' component={LanesList} exact={true} />
                         <PrivateRoute path="/lanes/create" component={CreateLane} exact={true} />
                         <PrivateRoute path="/stories" component={StoryList} exact={true} />

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import { post } from '../../api/core';
+import { get, post, put } from '../../api/core';
 import moment from 'moment';
 
 export default class Project extends Component {
@@ -14,8 +14,27 @@ export default class Project extends Component {
             name : '',
             description : '',
             startDate : new Date(),
-            endDate :  null,
+            endDate :  '',
             active : true,
+            id : this.props.match.params === {} ? '' : this.props.match.params.id,
+        }
+    }
+
+    componentDidMount() {
+        let { id } = this.state;
+        if(id !== undefined) {
+            get(`projects/${id}`).then(res => {
+                let { name, description, active } = res.data.project;
+
+                this.setState({
+                    name,
+                    description,
+                    startDate : moment(res.data.project.start_date).format('MM/DD/YYYY'),
+                    endDate : moment(res.data.project.end_date).format('MM/DD/YYYY'),
+                    active,
+                    id
+                });
+            });
         }
     }
 
@@ -36,7 +55,7 @@ export default class Project extends Component {
 
         evt.preventDefault();
 
-        let { name, description, startDate, endDate, active } = this.state;
+        let { name, description, startDate, endDate, active, id } = this.state;
 
         let data = {
             name,
@@ -46,15 +65,28 @@ export default class Project extends Component {
             active
         }
 
-        post('projects', data).then((res) => {
-            window.location = '/projects';
-        }).catch((err) => {
-            console.log(err);
-        })
-
+        if(id === undefined) {
+            post('projects', data).then((res) => {
+                window.location = '/projects';
+            }).catch((err) => {
+                console.log(err);
+            })
+        } else {
+            console.log(data)
+            put(`projects/${id}`, data).then(res => {
+                console.log(res.data.project)
+                //window.location = '/projects';
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
     }
 
     render() {
+
+        let { name, description, startDate, endDate, active } = this.state;
+
+
 
         return (
             <div className="div-container__medium">
@@ -63,12 +95,23 @@ export default class Project extends Component {
                     <FormGroup>
                         <Row>
                             <Col className="col-left">
-                                <Input type="text" name="name" onChange={this.handleChange} placeholder="project name" />
+                                <Input type="text" 
+                                       name="name"
+                                       value={name} 
+                                       onChange={this.handleChange} 
+                                       placeholder="project name"
+                                />
                             </Col>
                         </Row>
                         <Row>
                             <Col className="col-left">
-                                <Input type="textarea" name="description" onChange={this.handleChange} placeholder="description" rows="4" />
+                                <Input type="textarea"
+                                       name="description"
+                                       value={description}
+                                       onChange={this.handleChange}
+                                       placeholder="description" 
+                                       rows="4"
+                                />
                             </Col>
                         </Row>
                         <Row>
@@ -76,7 +119,10 @@ export default class Project extends Component {
                                 Start Date: 
                             </Col>
                             <Col className="col-right">
-                                <DayPickerInput name="startDate" onDayChange={day => this.setStartDate(day)} />
+                                <DayPickerInput name="startDate"
+                                                onDayChange={day => this.setStartDate(day)}
+                                                value={startDate}
+                                />
                             </Col>
                         </Row>
                         <Row>
@@ -84,7 +130,10 @@ export default class Project extends Component {
                                 End Date: 
                             </Col>
                             <Col className="col-right">
-                                <DayPickerInput name="endDate" format="MM/DD/YYYY" onDayChange={day => this.setEndDate(day)} />
+                                <DayPickerInput name="endDate"
+                                                onDayChange={day => this.setEndDate(day)}
+                                                value={endDate}
+                                />
                             </Col>
                         </Row>
                         <Button onClick={this.handleSubmit}>Submit</Button>

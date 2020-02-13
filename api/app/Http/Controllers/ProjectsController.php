@@ -67,7 +67,22 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::where('id', $id)
+                          ->where('organization_id', $this->user->organization_id)
+                          ->first();
+
+        if ($project) {
+            return response()->json([
+                'success' => true,
+                'project' => $project
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error getting the project.'
+            ], 500);
+        }
+
     }
 
     /**
@@ -78,7 +93,27 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::where('id', $id)->first();
+
+        $project->name = $request->input('name');
+        $project->description = $request->input('description');
+        $project->start_date = $request->input('startDate');
+        $project->end_date = $request->input('endDate');
+        $project->organization_id = $this->user->organization_id;
+
+        $story->save();
+
+        if ($story) {
+            return response()->json([
+                'success' => true,
+                'project' => $project
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error updating the story.'
+            ], 500);
+        }
     }
 
     /**
