@@ -26,9 +26,11 @@ export default class StoryList extends PureComponent {
     }
 
     handleDelete = (evt) => {
+
+        console.log('id',evt.target.id)
         confirmAlert({
             title: 'Delete Story',
-            message: 'Are you sure to do this.',
+            message: 'Are you sure to delete this story?',
             buttons: [
               {
                 label: 'Yes',
@@ -40,13 +42,11 @@ export default class StoryList extends PureComponent {
               },
               {
                 label: 'No',
-                onClick: () => alert('Click No')
+                onClick: () => {}
               }
             ]
           });
     }
-
-
 
     render() {
 

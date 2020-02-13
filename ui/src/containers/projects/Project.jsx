@@ -5,7 +5,7 @@ import 'react-day-picker/lib/style.css';
 import { post } from '../../api/core';
 import moment from 'moment';
 
-export default class CreateProject extends Component {
+export default class Project extends Component {
 
     constructor(props, context) {
         super(props, context)
@@ -47,7 +47,7 @@ export default class CreateProject extends Component {
         }
 
         post('projects', data).then((res) => {
-            window.location('/projects');
+            window.location = '/projects';
         }).catch((err) => {
             console.log(err);
         })
@@ -76,7 +76,7 @@ export default class CreateProject extends Component {
                                 Start Date: 
                             </Col>
                             <Col className="col-right">
-                                <DayPickerInput name="start" onDayChange={day => this.setStartDate(day)} />
+                                <DayPickerInput name="startDate" onDayChange={day => this.setStartDate(day)} />
                             </Col>
                         </Row>
                         <Row>
@@ -84,7 +84,7 @@ export default class CreateProject extends Component {
                                 End Date: 
                             </Col>
                             <Col className="col-right">
-                                <DayPickerInput name="end" format="MM/DD/YYYY" onDayChange={day => this.setStartDate(day)} />
+                                <DayPickerInput name="endDate" format="MM/DD/YYYY" onDayChange={day => this.setStartDate(day)} />
                             </Col>
                         </Row>
                         <Button onClick={this.handleSubmit}>Submit</Button>

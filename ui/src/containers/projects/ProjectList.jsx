@@ -37,8 +37,7 @@ class ProjectList extends PureComponent {
                     projects.map(project => {
                         return <Row key={project.id}>
                             <Col md={1}>{project.id}</Col>
-                            <Col>{project.name}</Col>
-                            <Col>{project.description}</Col>
+                            <Col md={3}>{project.name}</Col>
                             <Col>{moment(project.start_date).format('MM/DD/YYYY')}</Col>
                             <Col>{moment(project.end_date).format('MM/DD/YYYY')}</Col>
                             <Col>{project.active ? 'active' : 'inactive'}</Col>
