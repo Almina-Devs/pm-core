@@ -65,9 +65,21 @@ class LanesController extends Controller
      */
     public function show($id)
     {
-        $lane = Lane::where('id', $id)->first();
+        $lane = Lane::where('id', $id)
+                    ->where('organization_id', $this->user->organization_id)
+                    ->first();
 
-        return response($lane, 200);
+        if ($lane) {
+            return response()->json([
+                'success' => true,
+                'lane' => $lane
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error retrieving the lane.'
+            ], 500);
+        }
     }
 
     /**

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
 import { post, get } from '../../api/core';
 
-class CreateLane extends PureComponent {
+export default class Lane extends PureComponent {
     constructor(props) {
         super(props)
 
@@ -11,13 +11,29 @@ class CreateLane extends PureComponent {
             label : '',
             project_id : 0,
             projects : [],
+            id : this.props.match.params === {} ? '' : this.props.match.params.id,
         }
     }
 
     componentDidMount() {
+        
         get('projects').then((res) => {
             this.setState({ projects :res.data });
         });
+
+        let { id } = this.state;
+        if(id !== undefined) {
+            get(`lanes/${id}`).then(res => {
+                let { title, label, project_id } = res.data.project;
+                this.setState({
+                    title,
+                    label,
+                    project_id,
+                    id
+                });
+            });
+        }
+        
     }
 
     handleChange = (evt) => {
@@ -83,5 +99,3 @@ class CreateLane extends PureComponent {
         )
     }
 }
-
-export default CreateLane
