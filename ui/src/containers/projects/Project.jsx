@@ -25,7 +25,6 @@ export default class Project extends Component {
         if(id !== undefined) {
             get(`projects/${id}`).then(res => {
                 let { name, description, active } = res.data.project;
-
                 this.setState({
                     name,
                     description,
@@ -60,8 +59,8 @@ export default class Project extends Component {
         let data = {
             name,
             description,
-            startDate,
-            endDate,
+            startDate : moment(startDate).format('YYYY-MM-DD'),
+            endDate : moment(endDate).format('YYYY-MM-DD'),
             active
         }
 
@@ -72,10 +71,8 @@ export default class Project extends Component {
                 console.log(err);
             })
         } else {
-            console.log(data)
             put(`projects/${id}`, data).then(res => {
-                console.log(res.data.project)
-                //window.location = '/projects';
+                window.location = '/projects';
             }).catch((err) => {
                 console.log(err);
             });
@@ -84,13 +81,11 @@ export default class Project extends Component {
 
     render() {
 
-        let { name, description, startDate, endDate, active } = this.state;
-
-
+        let { name, description, startDate, endDate, id } = this.state;
 
         return (
             <div className="div-container__medium">
-                <p>New Project</p>
+                <p>{id == undefined ? 'New' : 'Edit' }  Project Details</p>
                 <Form>
                     <FormGroup>
                         <Row>

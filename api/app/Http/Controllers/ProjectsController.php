@@ -86,12 +86,13 @@ class ProjectsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function update(Request $request, $id)
     {
         $project = Project::where('id', $id)->first();
 
@@ -101,9 +102,9 @@ class ProjectsController extends Controller
         $project->end_date = $request->input('endDate');
         $project->organization_id = $this->user->organization_id;
 
-        $story->save();
+        $project->save();
 
-        if ($story) {
+        if ($project) {
             return response()->json([
                 'success' => true,
                 'project' => $project
@@ -114,18 +115,6 @@ class ProjectsController extends Controller
                 'message' => 'Sorry, there was an error updating the story.'
             ], 500);
         }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
