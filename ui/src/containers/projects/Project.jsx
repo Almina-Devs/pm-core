@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Input, Row, Col } from 'reactstrap';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import { get, post, put } from '../../api/core';
 import moment from 'moment';
+import FormButtons from '../common/components/FormButtons';
 
 export default class Project extends Component {
 
@@ -131,7 +132,7 @@ export default class Project extends Component {
                                 />
                             </Col>
                         </Row>
-                        <Button onClick={this.handleSubmit}>Submit</Button>
+                        <FormButtons Cancelpath={'projects'} handleSubmit={this.handleSubmit} />
                     </FormGroup>
                 </Form>
 

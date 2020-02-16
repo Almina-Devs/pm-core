@@ -56,11 +56,11 @@ class ProjectList extends PureComponent {
 
     render() {
 
-        let { projects, statusCode } = this.state;
+        let { projects } = this.state;
 
         return (
             <React.Fragment>                
-                <p>projects - {statusCode}</p>
+                <p>projects</p>
                 <div className="div-container__large">
                     {
                         projects.map(project => {
@@ -83,6 +83,14 @@ class ProjectList extends PureComponent {
                         })
                     }
                 </div>
+                <Row>
+                    <Col>
+                        <a href={`/projects/create`}>
+                            <i className="fas fa-plus"></i>
+                            {`  New Project`}
+                        </a>
+                    </Col>
+                </Row>
             </React.Fragment> 
         )
     }

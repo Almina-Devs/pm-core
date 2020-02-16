@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
 import { post, get, put } from '../../api/core';
+import FormButtons from '../common/components/FormButtons';
 
 export default class Story extends PureComponent {
     constructor(props) {
@@ -123,7 +124,8 @@ export default class Story extends PureComponent {
                                 </Col>
                             </Row>
 
-                            <Button onClick={this.handleSubmit}>Submit</Button>
+                            <FormButtons Cancelpath={'stories'} handleSubmit={this.handleSubmit} />
+
                         </FormGroup>
                     </Form>
                 </div>

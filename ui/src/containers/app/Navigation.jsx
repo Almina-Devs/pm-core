@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
 import { isAuthenticated } from '../app/auth/auth';
+import { Row, Col } from 'reactstrap';
 
 const Navigation = (props) => {
   
@@ -24,33 +25,78 @@ const Navigation = (props) => {
             Core Admin
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem header>Projects</DropdownItem>
-            <a href="/projects">
-              <DropdownItem>List</DropdownItem>
-            </a>
-            <a href="/projects/create">
-              <DropdownItem>Create</DropdownItem>
-            </a>
+            <DropdownItem header>
+                Projects
+            </DropdownItem>
+            <DropdownItem>
+                <Row>
+                    <Col>
+                        <a href="/projects">
+                            <i className="fas fa-list"></i>
+                        </a>                
+                    </Col>
+                    <Col>
+                        <a href="/projects/create">
+                            <i className="fas fa-plus"></i>
+                        </a>
+                    </Col>
+                </Row>
+            </DropdownItem>
+            
             <DropdownItem divider />
+
             <DropdownItem header>Lanes</DropdownItem>
-            <a href="/lanes">
-              <DropdownItem>List</DropdownItem>
-            </a>
-            <a href="/lanes/create">
-              <DropdownItem>Create</DropdownItem>
-            </a>
+            <DropdownItem>
+                <Row>
+                    <Col>
+                        <a href="/lanes">
+                            <i className="fas fa-list"></i>
+                        </a>                
+                    </Col>
+                    <Col>
+                        <a href="/lanes/create">
+                            <i className="fas fa-plus"></i>
+                        </a>
+                    </Col>
+                </Row>
+            </DropdownItem>
+
             <DropdownItem divider />
+
             <DropdownItem header>Stories</DropdownItem>
-            <a href="/stories">
-              <DropdownItem>List</DropdownItem>
-            </a>
-            <a href="/stories/create">
-              <DropdownItem>Create</DropdownItem>
-            </a>
+            <DropdownItem>
+                <Row>
+                    <Col>
+                        <a href="/stories">
+                            <i className="fas fa-list"></i>
+                        </a>                
+                    </Col>
+                    <Col>
+                        <a href="/stories/create">
+                            <i className="fas fa-plus"></i>
+                        </a>
+                    </Col>
+                </Row>
+            </DropdownItem>
+
+            <DropdownItem divider />
+
             <DropdownItem header>Users</DropdownItem>
-            <a href="/users">
-              <DropdownItem>List</DropdownItem>
-            </a>
+            <DropdownItem>
+                <Row>
+                    <Col>
+                        <a href="/users">
+                            <i className="fas fa-list"></i>
+                        </a>                
+                    </Col>
+                    <Col>
+                        <a href="/users/create">
+                            <i className="fas fa-plus"></i>
+                        </a>
+                    </Col>
+                </Row>
+            </DropdownItem>
+            
           </DropdownMenu>
         </Dropdown>
         <NavItem>

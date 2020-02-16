@@ -10,6 +10,10 @@
   text-align: center;
 }
 
+.button-main {
+  margin-right: 10px;
+}
+
 .navigation {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -46,6 +50,7 @@
   border-color: lightgray;
   border-radius: 5px;
   padding: 20px;
+  margin-bottom: 20px;
   width: 75%;
 }
 
@@ -71,4 +76,3 @@ a:visited {
   padding: 10px;
   text-align: left;
 }
-/*# sourceMappingURL=style.css.map */

@@ -78,6 +78,16 @@ export default class StoryList extends PureComponent {
                         })
                     }
                 </div>
+
+                <Row>
+                    <Col>
+                        <a href={`/stories/create`}>
+                            <i className="fas fa-plus"></i>
+                            {`  New Story`}
+                        </a>
+                    </Col>
+                </Row>
+
             </React.Fragment> 
         )
     }
