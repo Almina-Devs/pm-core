@@ -15,6 +15,10 @@ export default class StoryList extends PureComponent {
     }
 
     componentDidMount() {
+        this.loadData();
+    }
+
+    loadData = () => {
         get('stories').then((res) => {
             this.setState({ 
                 stories : res.data,
@@ -22,12 +26,13 @@ export default class StoryList extends PureComponent {
             });
         }).catch(err => {
             window.location = "/error";
-        });  
+        });
     }
 
     handleDelete = (evt) => {
 
-        console.log('id',evt.target.id)
+        const id = evt.target.id;
+
         confirmAlert({
             title: 'Delete Story',
             message: 'Are you sure to delete this story?',
@@ -35,8 +40,8 @@ export default class StoryList extends PureComponent {
               {
                 label: 'Yes',
                 onClick: () => {
-                    deleteResource(`stories/${evt.target.id}`).then(res => {
-                        console.log('res', res.data)
+                    deleteResource(`stories/${id}`).then(res => {
+                        this.loadData();
                     });
                 }
               },

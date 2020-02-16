@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
-import { post, get } from '../../api/core';
+import { post, get, put } from '../../api/core';
 
 export default class Lane extends PureComponent {
     constructor(props) {
@@ -24,7 +24,7 @@ export default class Lane extends PureComponent {
         let { id } = this.state;
         if(id !== undefined) {
             get(`lanes/${id}`).then(res => {
-                let { title, label, project_id } = res.data.project;
+                let { title, label, project_id, id } = res.data.lane;
                 this.setState({
                     title,
                     label,
@@ -43,18 +43,26 @@ export default class Lane extends PureComponent {
 
     handleSubmit = () => {
 
-        let { title, label, project_id } = this.state;
+        let { title, label, project_id, id } = this.state;
         let data = {
             title,
             label,
             project_id
         }
 
-        post('lanes', data).then((res) => {
-            window.location = '/lanes';
-        }).catch((err) => {
-            console.log(err);
-        })
+        if(id === undefined) {
+            post('lanes', data).then((res) => {
+                window.location = '/lanes';
+            }).catch((err) => {
+                console.log(err);
+            })
+        } else {
+            put(`lanes/${id}`, data).then(res => {
+                window.location = '/lanes';
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
 
     }
 
