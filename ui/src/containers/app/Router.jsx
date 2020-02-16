@@ -10,7 +10,7 @@ import Dashboard from '../dashboard/Dashboard';
 import BoardView from '../board/BoardView';
 import ProjectList from '../projects/ProjectList';
 import Project from '../projects/Project';
-import CreateLane from '../lanes/CreateLane';
+import Lane from '../lanes/Lane';
 import LanesList from '../lanes/LanesList';
 import Login from '../app/auth/Login';
 import Logout from '../app/auth/Logout';
@@ -36,7 +36,8 @@ export default class Router extends Component {
                         <PrivateRoute path="/projects/create" component={Project} exact={true} />
                         <PrivateRoute path="/projects/edit/:id" component={Project} exact={true} />
                         <PrivateRoute path='/lanes' component={LanesList} exact={true} />
-                        <PrivateRoute path="/lanes/create" component={CreateLane} exact={true} />
+                        <PrivateRoute path="/lanes/create" component={Lane} exact={true} />
+                        <PrivateRoute path="/lanes/edit/:id" component={Lane} exact={true} />
                         <PrivateRoute path="/stories" component={StoryList} exact={true} />
                         <PrivateRoute path="/stories/create" component={Story} exact={true} />
                         <PrivateRoute path="/stories/edit/:id" component={Story} exact={true} />

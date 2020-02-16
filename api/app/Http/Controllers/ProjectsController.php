@@ -94,7 +94,9 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $project = Project::where('id', $id)->first();
+        $project = Project::where('id', $id)
+                          ->where('organization_id', $this->user->organization_id)
+                          ->first();
 
         $project->name = $request->input('name');
         $project->description = $request->input('description');
@@ -125,6 +127,14 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::where('id', $id)
+                          ->where('organization_id', $this->user->organization_id)
+                          ->delete();
+        
+        return response()->json([
+            'success' => true,
+            'project' => $project
+        ]);
+            
     }
 }

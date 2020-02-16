@@ -65,20 +65,21 @@ class LanesController extends Controller
      */
     public function show($id)
     {
-        $lane = Lane::where('id', $id)->first();
+        $lane = Lane::where('id', $id)
+                    ->where('organization_id', $this->user->organization_id)
+                    ->first();
 
-        return response($lane, 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        if ($lane) {
+            return response()->json([
+                'success' => true,
+                'lane' => $lane
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error retrieving the lane.'
+            ], 500);
+        }
     }
 
     /**
@@ -90,7 +91,29 @@ class LanesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $lane = Lane::where('id', $id)
+                    ->where('organization_id', $this->user->organization_id)
+                    ->first();
+
+        $lane->title = $request->input('title');
+        $lane->label = $request->input('label');
+        $lane->project_id = $request->input('project_id');
+        $lane->organization_id = $this->user->organization_id;
+
+        $lane->save();
+        
+        if ($lane) {
+            return response()->json([
+                'success' => true,
+                'lane' => $lane
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error updating the lane.'
+            ], 500);
+        }
+
     }
 
     /**
@@ -101,6 +124,13 @@ class LanesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lane = Lane::where('id', $id)
+                    ->where('organization_id', $this->user->organization_id)
+                    ->delete();
+
+        return response()->json([
+            'success' => true,
+            'lane' => $lane
+        ]);
     }
 }
