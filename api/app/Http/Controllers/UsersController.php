@@ -39,7 +39,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        
     }
 
     /**

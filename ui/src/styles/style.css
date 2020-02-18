@@ -76,3 +76,7 @@ a:visited {
   padding: 10px;
   text-align: left;
 }
+
+i {
+  cursor: pointer;
+}

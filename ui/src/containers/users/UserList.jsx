@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Row, Col } from 'reactstrap';
 import { get } from '../../api/core';
+import PasswordModal from './PasswordModal';
 
 export default class UserList extends PureComponent {
     constructor(props) {
@@ -8,6 +9,9 @@ export default class UserList extends PureComponent {
 
         this.state = {
             users : [],
+            showPasswordModal : false,
+            newPassword : '',
+            id : '',
         }
     }
 
@@ -17,7 +21,7 @@ export default class UserList extends PureComponent {
         });
     }
 
-    handleEdit = (evt) => {
+    handleUpdate = (evt) => {
         console.log(evt.target.id);
     }
 
@@ -25,9 +29,21 @@ export default class UserList extends PureComponent {
         console.log(evt.target.id);
     }
 
+    handleUpdatePassword = () => {
+        console.log('state', this.state);
+        this.setState({ showPasswordModal : false });
+    }
+
+    handlePasswordOnChange = (evt) => {
+        this.setState({ 
+            newPassword : evt.target.value,
+            id : evt.target.id
+        });
+    }
+
     render() {
 
-        let { users } = this.state;
+        let { users, showPasswordModal } = this.state;
 
         return (
             <React.Fragment>
@@ -39,18 +55,25 @@ export default class UserList extends PureComponent {
                                 <Col>{user.name}</Col>
                                 <Col>{user.email}</Col>
                                 <Col>
-                                    <i class="fas fa-edit" id={user.id} onClick={this.handleEdit}></i>
+                                    <i className="fas fa-edit" id={user.id} onClick={this.handleEdit}></i>
                                 </Col>
                                 <Col>
-                                    <i class="fas fa-key" id={user.id} onClick={this.handleEdit}></i>
+                                    <PasswordModal toggle={showPasswordModal} 
+                                                   handleUpdate={this.handleUpdatePassword} 
+                                                   onChange={this.handlePasswordOnChange}
+                                                   id={user.id}
+                                    />
                                 </Col>
                                 <Col>
-                                    <i class="fas fa-trash-alt" id={user.id} onClick={this.handleDelete}></i>
+                                    <i className="fas fa-trash-alt" id={user.id} onClick={this.handleDelete}></i>
                                 </Col>
                             </Row>
                         })
                     }
                 </div>
+
+                
+
             </React.Fragment>
             
         )
