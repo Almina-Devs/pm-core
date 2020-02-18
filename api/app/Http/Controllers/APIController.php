@@ -86,4 +86,25 @@ class APIController extends Controller
         ], 200);
     }
 
+    public function updatePassword(Request $request, $id)
+    {
+        $input = $request->only('password');
+
+        $user = User::where('id', $id)
+                     ->first();                 
+        
+        if ($user) {
+            $user->password = bcrypt($input['password']);
+            $user->save();
+            return response()->json([
+                'success' => true,
+                'user' => $user
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error updating the password.'
+            ], 500);
+        }
+    }
 }

@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::post('login', 'ApiController@login');
 Route::post('register', 'ApiController@register');
 
+
 // needs auth group
 
 Route::group(['middleware' => 'auth.jwt'], function () {
@@ -33,5 +34,7 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::resource('/users', 'UsersController');
 
     Route::get('/boards', 'BoardsController@index');
+
+    Route::put('/passwordreset/{id}', 'ApiController@updatePassword');
 
 });
