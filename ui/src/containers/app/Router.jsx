@@ -18,6 +18,7 @@ import Register from '../app/auth/Register';
 import StoryList from '../stories/StoryList';
 import Story from '../stories/Story';
 import UserList from '../users/UserList';
+import Gantt from '../gantt/Gantt';
 import PageNotFound from './PageNotFound';
 import ServerError from './ServerError';
   
@@ -42,6 +43,7 @@ export default class Router extends Component {
                         <PrivateRoute path="/stories/create" component={Story} exact={true} />
                         <PrivateRoute path="/stories/edit/:id" component={Story} exact={true} />
                         <PrivateRoute path="/users" component={UserList} exact={true} />
+                        <PrivateRoute path="/gantt" component={Gantt} exact={true} />
                         <Route path="/login" component={Login} exact={true} />
                         <Route path="/logout" component={Logout} exact={true} />
                         <Route path="/Register" component={Register} exact={true} />

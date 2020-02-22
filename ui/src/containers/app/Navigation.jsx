@@ -102,6 +102,9 @@ const Navigation = (props) => {
         <NavItem>
           <NavLink href="/boards">Boards</NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink href="/gantt">Gantt</NavLink>
+        </NavItem>        
       </Nav>
 
       <Nav>
