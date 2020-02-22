@@ -17,7 +17,7 @@ export default class Gantt extends Component {
         viewMode: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'][parseInt(Math.random() * 5 + 1) - 1],
         tasks: this.getTasks().slice(0, parseInt(Math.random() * 4 + 1))
       });
-    }.bind(this), 5000)
+    }.bind(this), 500000)
   };
 
   getTasks = () => {
@@ -55,11 +55,11 @@ export default class Gantt extends Component {
   };
 
   customPopupHtml = task => {
-    const end_date = task._end.format('MMM D');
+    //const end_date = task._end.format('MMM D');
     return `
       <div class="details-container">
         <h5>${task.name}</h5>
-        <p>Expected to finish by ${end_date}</p>
+        <p>Expected to finish by at some point...</p>
         <p>${task.progress}% completed!</p>
       </div>
     `;
