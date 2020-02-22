@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use JWTAuth;
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Http\Resources\UserResource;
 use \DB;
 
@@ -39,8 +40,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        
+    
+
     }
 
     /**
@@ -54,16 +55,6 @@ class UsersController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -85,6 +76,21 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = DB::table('users')
+                  ->where('id', $id)
+                  ->where('organization_id', $this->user->organization_id)
+                  ->delete();
+
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'user' => $user
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error deleting the user.'
+            ], 500);
+        }
     }
 }

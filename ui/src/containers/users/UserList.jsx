@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
 import { Row, Col } from 'reactstrap';
-import { get } from '../../api/core';
+import { get, put, deleteResource } from '../../api/core';
 import PasswordModal from './PasswordModal';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export default class UserList extends PureComponent {
     constructor(props) {
@@ -16,6 +18,10 @@ export default class UserList extends PureComponent {
     }
 
     componentDidMount() {
+        this.loadData();
+    }
+
+    loadData = () => {
         get('users').then( res => {
             this.setState({ users : res.data });
         });
@@ -26,11 +32,40 @@ export default class UserList extends PureComponent {
     }
 
     handleDelete = (evt) => {
-        console.log(evt.target.id);
+        
+        const id = evt.target.id;
+
+        confirmAlert({
+            title: 'Delete User',
+            message: 'Are you sure to delete this user?',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: () => {
+                    deleteResource(`users/${id}`).then(res => {
+                        this.loadData();
+                    });
+                }
+              },
+              {
+                label: 'No',
+                onClick: () => {}
+              }
+            ]
+          });
+
     }
 
     handleUpdatePassword = () => {
-        console.log('state', this.state);
+        let { id, newPassword } = this.state;
+        let data = {
+            password : newPassword
+        }
+        put(`passwordreset\/${id}`, data).then((res) => {
+            this.setState({  showPasswordModal : false });
+        }).catch((err) => {
+            console.log(err);
+        });
         this.setState({ showPasswordModal : false });
     }
 
@@ -71,9 +106,6 @@ export default class UserList extends PureComponent {
                         })
                     }
                 </div>
-
-                
-
             </React.Fragment>
             
         )
