@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import Board from '@lourenci/react-kanban'
 import { get, put } from '../../api/core';
 
+const YourCard = () => {
+    return (
+        <div>hi</div>
+    )
+}
+
 export default class componentName extends Component {
 
     constructor(props) {
@@ -47,10 +53,19 @@ export default class componentName extends Component {
         return (
             <div>
                 {board &&
-                  <Board initialBoard={board} onCardDragEnd={this.handleCardDragEnd} />
+                  <Board initialBoard={board} onCardDragEnd={this.handleCardDragEnd} 
+                  renderCard={({ content }, { removeCard, dragging }) => (
+                    <YourCard dragging={dragging}>
+                      {content}
+                      <button type="button" onClick={removeCard}>Remove Card</button>
+                    </YourCard>
+                  )}
+                  
+                  />
                 }
                 
             </div>
         )
     }
+
 }
