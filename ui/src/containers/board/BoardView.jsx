@@ -26,19 +26,15 @@ export default class componentName extends Component {
     handleCardDragEnd = (data) => {
         data.lanes.forEach( lane => {
             lane.cards.forEach( card => {
-                
                 let data = {
                     id : card.id,
                     title : card.title,
                     lane_id : lane.id
                 };
-
-                put(`stories/${card.id}`, data).then( res => {
-                    console.log('success', data);
-                }).catch( err => {
-                    console.log(err);
-                })
-                
+                put(`stories/${card.id}`, data).then( res => { } ).catch( 
+                    err => {
+                        console.log(err);
+                });
             });
         });
 
