@@ -11,23 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        DB::table('users')->insert([
-            'name' => 'marc mendoza',
-            'email' => '777marc@gmail.com',
-            'password' => Hash::make('marc1111'),
-            'organization_id' => 1
-        ]);
+        $this->call(OrganizationSeeder::class);
+        
+        $this->call(UserSeeder::class);
 
-        DB::table('projects')->insert([
-            'name' => 'main project',
-            'description' => ' a test project',
-            'start_date' => '2020-06-01',
-            'end_date' => '2020-09-01-01',
-            'active' => 1,
-            'category_id' => null,
-            'organization_id' => 1
-        ]);
+        $this->call(ProjectSeeder::class);
+
+        $this->call(LaneSeeder::class);
+
+        $this->call(StoriesSeeder::class);
 
     }
 }
