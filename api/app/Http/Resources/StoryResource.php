@@ -16,8 +16,11 @@ class StoryResource extends JsonResource
     {
         $response = [
             "id" => $this->id,
-            "title" => $this->title,
-            "description" => $this->description
+            "content" => [
+                "id" => $this->id,
+                "title" => $this->title,
+                "description" => $this->description
+            ]
         ];
 
         return $response;

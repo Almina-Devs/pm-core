@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
 import ReactGantt from 'gantt-for-react';
+import Select from 'react-select';
+
+const options = [
+  { value: 'Quarter Day', label: 'Quarter Day' },
+  { value: 'Half Day', label: 'Half Day' },
+  { value: 'Day', label: 'Day' },
+  { value: 'Week', label: 'Week' },
+  { value: 'Month', label: 'Month' },
+]
+
+const MyComponent = (props) => (
+  <Select onChange={props.onChange} options={options} />
+)
 
 export default class Gantt extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      viewMode: 'Day',
+      viewMode: 'Week',
       tasks: this.getTasks(),
     };
   }
 
   componentDidMount() {
-    window.setInterval(function() {
-      this.setState({
-        viewMode: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'][parseInt(Math.random() * 5 + 1) - 1],
-        tasks: this.getTasks().slice(0, parseInt(Math.random() * 4 + 1))
-      });
-    }.bind(this), 500000)
+    this.setState({
+      viewMode: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'][parseInt(Math.random() * 5 + 1) - 1],
+      tasks: this.getTasks().slice(0, parseInt(Math.random() * 4 + 1))
+    });
   };
 
   getTasks = () => {
@@ -55,7 +66,6 @@ export default class Gantt extends Component {
   };
 
   customPopupHtml = task => {
-    //const end_date = task._end.format('MMM D');
     return `
       <div class="details-container">
         <h5>${task.name}</h5>
@@ -65,17 +75,25 @@ export default class Gantt extends Component {
     `;
   };
 
+  handleSelectChange = (evt) => {
+    console.log(evt.value)
+    this.setState({ viewMode : evt.value });
+  }
+
   render() {
     return (
-      <div className='examples'>
-        <div className='parent'>
-          <label> render ReactGantt Component </label>
-          <div style={{overflow: 'scroll'}}>
-            <ReactGantt tasks={this.state.tasks}
-                        viewMode={this.state.viewMode}
-                        customPopupHtml={this.customPopupHtml}
-                        scrollOffsets={this.state.scrollOffsets}
-            />
+      <div className="div-container__large">
+        <div className='examples'>
+          <div className='parent'>
+            <MyComponent onChange={this.handleSelectChange}/>
+            <label> render ReactGantt Component </label>
+            <div style={{overflow: 'scroll'}}>
+              <ReactGantt tasks={this.state.tasks}
+                          viewMode={this.state.viewMode}
+                          customPopupHtml={this.customPopupHtml}
+                          scrollOffsets={this.state.scrollOffsets}
+              />
+            </div>
           </div>
         </div>
       </div>

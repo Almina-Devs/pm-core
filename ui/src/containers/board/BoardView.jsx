@@ -1,12 +1,7 @@
-import React, { Component } from 'react'
-import Board from '@lourenci/react-kanban'
+import React, { Component } from 'react';
+import { CustomCard } from './CustomCard';
+import Board from '@lourenci/react-kanban';
 import { get, put } from '../../api/core';
-
-const YourCard = () => {
-    return (
-        <div>hi</div>
-    )
-}
 
 export default class componentName extends Component {
 
@@ -49,21 +44,24 @@ export default class componentName extends Component {
     render() {
 
         let { board } = this.state;
-        
+
         return (
-            <div>
+            <div className="div-container__large">
                 {board &&
                   <Board initialBoard={board} onCardDragEnd={this.handleCardDragEnd} 
-                  renderCard={({ content }, { removeCard, dragging }) => (
-                    <YourCard dragging={dragging}>
-                      {content}
-                      <button type="button" onClick={removeCard}>Remove Card</button>
-                    </YourCard>
-                  )}
-                  
+                    renderCard={({ content }, { removeCard, dragging, card }) => {
+                        
+                        return ( 
+                            <React.Fragment>
+                                <CustomCard id={content.id}
+                                    title={content.title}
+                                    description={content.description}
+                                />
+                            </React.Fragment>
+                        )
+                    }}
                   />
                 }
-                
             </div>
         )
     }
