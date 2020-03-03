@@ -76,7 +76,6 @@ export default class Gantt extends Component {
   };
 
   handleSelectChange = (evt) => {
-    console.log(evt.value)
     this.setState({ viewMode : evt.value });
   }
 
