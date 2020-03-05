@@ -26,8 +26,9 @@ export default class Gantt extends Component {
 
   componentDidMount() {
     this.setState({
-      viewMode: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'][parseInt(Math.random() * 5 + 1) - 1],
-      tasks: this.getTasks().slice(0, parseInt(Math.random() * 4 + 1))
+      viewMode : ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'][parseInt(Math.random() * 5 + 1) - 1],
+      tasks : this.getTasks().slice(0, parseInt(Math.random() * 4 + 1)),
+      viewMode : 'Day'
     });
   };
 
@@ -85,7 +86,8 @@ export default class Gantt extends Component {
         <div className='examples'>
           <div className='parent'>
             <MyComponent onChange={this.handleSelectChange}/>
-            <label> render ReactGantt Component </label>
+            <br></br>
+            <label> Main Project </label>
             <div style={{overflow: 'scroll'}}>
               <ReactGantt tasks={this.state.tasks}
                           viewMode={this.state.viewMode}
