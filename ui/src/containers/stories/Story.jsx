@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Button, Form, FormGroup, Input, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Input, Row, Col } from 'reactstrap';
 import { post, get, put } from '../../api/core';
 import FormButtons from '../common/components/FormButtons';
 
@@ -84,7 +84,7 @@ export default class Story extends PureComponent {
         return (
             <React.Fragment>
                 <div className="div-container__medium">
-                    <p>{id == undefined ? 'New' : 'Edit' }  Story Details</p>
+                    <p>{id === undefined ? 'New' : 'Edit' }  Story Details</p>
                     <Form>
                         <FormGroup>
                             <Row>

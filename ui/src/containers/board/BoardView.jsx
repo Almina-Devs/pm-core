@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { CustomCard } from './CustomCard';
 import Board from '@lourenci/react-kanban';
 import { get, put } from '../../api/core';
+import { UserContext } from '../app/contexts/UserContext';
 
 export default class componentName extends Component {
+
+    static contextType = UserContext;
 
     constructor(props) {
         super(props)
@@ -29,7 +32,7 @@ export default class componentName extends Component {
             lane.cards.forEach( card => {
                 let data = {
                     id : card.id,
-                    title : card.title,
+                    title : card.content.title,
                     lane_id : lane.id
                 };
                 put(`stories/${card.id}`, data).then( res => { } ).catch( 
@@ -38,7 +41,6 @@ export default class componentName extends Component {
                 });
             });
         });
-
     }
     
     render() {

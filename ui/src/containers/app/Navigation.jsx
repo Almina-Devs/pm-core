@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink, Row, Col } from 'reactstrap';
 import { isAuthenticated } from '../app/auth/auth';
-import { Row, Col } from 'reactstrap';
+import UserCard from '../users/UserCard';
 
 const Navigation = (props) => {
   
@@ -121,6 +121,7 @@ const Navigation = (props) => {
               </React.Fragment>
             :
               <React.Fragment>
+                <UserCard />
                 <a href="/logout">
                   <DropdownItem>Logout</DropdownItem>
                 </a>
