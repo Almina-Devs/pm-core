@@ -37,4 +37,6 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 
     Route::put('/passwordreset/{id}', 'ApiController@updatePassword');
 
+    Route::get('/me', 'ApiController@me');
+
 });

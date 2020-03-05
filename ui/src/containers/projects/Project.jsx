@@ -86,7 +86,7 @@ export default class Project extends Component {
 
         return (
             <div className="div-container__medium">
-                <p>{id == undefined ? 'New' : 'Edit' }  Project Details</p>
+                <p>{id === undefined ? 'New' : 'Edit' }  Project Details</p>
                 <Form>
                     <FormGroup>
                         <Row>

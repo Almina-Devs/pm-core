@@ -1,10 +1,13 @@
 import React from 'react';
 import Router from './containers/app/Router';
+import UserContextProvider from './containers/app/contexts/UserContext';
 
 function App() {
   return (
     <div className="App">
-      <Router />
+      <UserContextProvider>
+          <Router />
+      </UserContextProvider>
     </div>
   );
 }

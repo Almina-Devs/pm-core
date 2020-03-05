@@ -61,7 +61,7 @@ export default class UserList extends PureComponent {
         let data = {
             password : newPassword
         }
-        put(`passwordreset\/${id}`, data).then((res) => {
+        put(`passwordreset/${id}`, data).then((res) => {
             this.setState({  showPasswordModal : false });
         }).catch((err) => {
             console.log(err);

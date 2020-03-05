@@ -10,6 +10,14 @@ use App\Http\Requests\RegistrationFormRequest;
 
 class APIController extends Controller
 {
+
+    /**
+     * Projects Controller Construct
+     */
+    public function __construct() {
+        $this->user = JWTAuth::parseToken()->authenticate();
+    }
+
     /**
      * @var bool
      */
@@ -106,5 +114,13 @@ class APIController extends Controller
                 'message' => 'Sorry, there was an error updating the password.'
             ], 500);
         }
+    }
+
+    public function me()
+    {
+        $user = User::where('id', $this->user->id)
+                     ->first();
+
+        return $user;                     
     }
 }

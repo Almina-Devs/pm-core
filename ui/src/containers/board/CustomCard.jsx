@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, CardLink, CardSubtitle, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Card, CardBody, CardLink, CardSubtitle, CardTitle, CardText } from 'reactstrap';
 
 export const CustomCard = (props) => {
     return (
