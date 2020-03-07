@@ -22,6 +22,9 @@ class CreateTasksTable extends Migration
             $table->integer('story_id')->nullable();
             $table->integer('percent_complete')->nullable();
             $table->integer('organization_id');
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
+            $table->integer('dependencies')->nullable();
             $table->timestamps();
         });
     }
