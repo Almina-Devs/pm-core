@@ -1,5 +1,7 @@
 const isAuthenticated = () => {
 
+    console.log("xxx", localStorage.getItem("access_token"));
+
     if (localStorage.getItem("access_token") === null) {
       return false;
     }

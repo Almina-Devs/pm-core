@@ -1,5 +1,6 @@
 import React, { createContext, Component } from 'react'
 import { get } from '../../../api/core';
+import { isAuthenticated } from '../auth/auth';
 
 export const UserContext = createContext();
 
@@ -16,12 +17,16 @@ export default class UserContextProvider extends Component {
     }
 
     componentDidMount() {
-        get('me').then(res => {
-            this.setState({ 
-                ready : true,
-                user : res.data
+        if(isAuthenticated()) {
+            get('me').then(res => {
+                this.setState({ 
+                    ready : true,
+                    user : res.data
+                });
             });
-        });
+        } else {
+            this.setState({ ready : true });
+        }
     }
         
     render() {
