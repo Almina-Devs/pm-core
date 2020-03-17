@@ -10,14 +10,6 @@ use App\Http\Requests\RegistrationFormRequest;
 
 class APIController extends Controller
 {
-
-    /**
-     * Projects Controller Construct
-     */
-    public function __construct() {
-        $this->user = JWTAuth::parseToken()->authenticate();
-    }
-
     /**
      * @var bool
      */
@@ -29,11 +21,8 @@ class APIController extends Controller
      */
     public function login(Request $request)
     {
-        dd("here");
         $input = $request->only('email', 'password');
         $token = null;
-
-        dd($token);
 
         if (!$token = JWTAuth::attempt($input)) {
             return response()->json([
@@ -121,7 +110,8 @@ class APIController extends Controller
 
     public function me()
     {
-        $user = User::where('id', $this->user->id)
+        $authUser = JWTAuth::parseToken()->authenticate();
+        $user = User::where('id', $authUser->id)
                      ->first();
 
         return $user;                     
