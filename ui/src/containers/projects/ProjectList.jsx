@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react'
 import { get, deleteResource } from '../../api/core';
-import { Row, Col } from 'reactstrap';
-import moment from 'moment';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import ListPage from '../common/components/ListPage';
 
 class ProjectList extends PureComponent {
     constructor(props) {
@@ -59,38 +58,12 @@ class ProjectList extends PureComponent {
         let { projects } = this.state;
 
         return (
-            <React.Fragment>                
-                <p>projects</p>
-                <div className="div-container__large">
-                    {
-                        projects.map(project => {
-                            return <Row key={project.id}>
-                                <Col md={1}>{project.id}</Col>
-                                <Col md={3}>{project.name}</Col>
-                                <Col>{moment(project.start_date).format('MM/DD/YYYY')}</Col>
-                                <Col>{moment(project.end_date).format('MM/DD/YYYY')}</Col>
-                                <Col>{project.active ? 'active' : 'inactive'}</Col>
-                                <Col md={1}>
-                                    <a href={`/projects/edit/${project.id}`}>
-                                        <i className="fas fa-edit" id={project.id} ></i>
-                                    </a>
-                                </Col>
-                                <Col md={1}>
-                                    <i className="fas fa-trash-alt" id={project.id} onClick={this.handleDelete}></i>
-                                </Col>
-
-                            </Row>
-                        })
-                    }
-                </div>
-                <Row>
-                    <Col>
-                        <a href={`/projects/create`}>
-                            <i className="fas fa-plus"></i>
-                            {`  New Project`}
-                        </a>
-                    </Col>
-                </Row>
+            <React.Fragment>
+                <ListPage title="Projects"
+                    listItems={projects}
+                    handleDelete={this.handleDelete}
+                    endpoint={'projects'}
+                />
             </React.Fragment> 
         )
     }

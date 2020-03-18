@@ -3,6 +3,7 @@ import { get, deleteResource } from '../../api/core';
 import { Row, Col } from 'reactstrap';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import ListPage from '../common/components/ListPage';
 
 class LanesList extends PureComponent {
     constructor(props) {
@@ -53,28 +54,11 @@ class LanesList extends PureComponent {
 
         return (
             <React.Fragment>
-                <p>lanes</p>
-                <div className="div-container__large">
-                {
-                    lanes.map(lane => {
-                        return <Row key={lane.id}>
-                            <Col md={1}>{lane.id}</Col>
-                            <Col md={3}>{lane.title}</Col>
-                            <Col md={3}>{lane.label}</Col>
-                            <Col md={3}>{lane.project_id}</Col>
-                            <Col md={1}>
-                                <a href={`/lanes/edit/${lane.id}`}>
-                                    <i className="fas fa-edit" id={lane.id} ></i>
-                                </a>
-                            </Col>
-                            <Col md={1}>
-                                <i className="fas fa-trash-alt" id={lane.id} onClick={this.handleDelete}></i>
-                            </Col>
-
-                        </Row>
-                    })
-                }
-                </div>
+                <ListPage listItems={lanes}
+                    title={'Lanes'}
+                    handleDelete={this.handleDelete}
+                    endpoint={'lanes'}
+                />
             </React.Fragment> 
         )
     }
