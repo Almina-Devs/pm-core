@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import { get, deleteResource } from '../../api/core';
-import { Row, Col } from 'reactstrap';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import ListPage from '../common/components/ListPage';
 
 export default class StoryList extends PureComponent {
     constructor(props) {
@@ -59,7 +59,15 @@ export default class StoryList extends PureComponent {
 
         return (
             <React.Fragment>
-                <div className="div-container__medium">
+
+                <ListPage listItems={stories}
+                    title={'Stories'}
+                    handleDelete={this.handleDelete}
+                    endpoint={'stories'}
+                    containerClass={'div-container__medium'}
+                />
+
+                {/* <div className="div-container__medium">
                     {
                         stories.map(story => {
                             return <Row key={story.id}>
@@ -86,7 +94,7 @@ export default class StoryList extends PureComponent {
                             {`  New Story`}
                         </a>
                     </Col>
-                </Row>
+                </Row> */}
 
             </React.Fragment> 
         )

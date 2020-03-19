@@ -16,12 +16,16 @@ export default class ListPage extends PureComponent {
 
     render() {
 
-        let { title, endpoint, listItems, handleEdit, handleDelete } = this.props;
+        let { title, endpoint, listItems, handleEdit, handleDelete, containerClass } = this.props;
+
+        if(containerClass === undefined) {
+            containerClass = 'div-container__large';
+        }
 
         return (
             <React.Fragment>                
                 <p>{ title }</p>
-                <div className="div-container__large">
+                <div className={containerClass}>
                     {
                         listItems.map(item => {
 
