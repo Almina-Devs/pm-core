@@ -20,7 +20,6 @@ jobs:
 
     steps:
       - checkout
-          path: ~/api
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
 
@@ -49,6 +48,7 @@ jobs:
             - node_modules
 
       # prepare the database
+      path: ~/api
       - run: touch storage/testing.sqlite
       - run: php artisan migrate --env=testing --database=sqlite_testing --force
 
