@@ -32,6 +32,8 @@ jobs:
             - v1-dependencies-
 
       - run: composer install -n --prefer-dist
+          paths:
+            - ./api              
 
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
@@ -48,7 +50,6 @@ jobs:
             - node_modules
 
       # prepare the database
-      path: ~/api
       - run: touch storage/testing.sqlite
       - run: php artisan migrate --env=testing --database=sqlite_testing --force
 
