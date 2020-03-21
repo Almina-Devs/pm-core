@@ -23,7 +23,6 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = Project::all();
-
         return response($projects, 200);
     }
 
