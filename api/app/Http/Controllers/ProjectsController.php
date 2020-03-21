@@ -22,8 +22,20 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-        return response($projects, 200);
+        $projects = Project::where('organization_id', $this->user->organization_id)
+                           ->get();
+
+        if ($projects) {
+            return response()->json([
+                'success' => true,
+                'projects' => $projects
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, there was an error getting the projects.'
+            ], 500);
+        }
     }
 
     /**

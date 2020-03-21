@@ -21,4 +21,11 @@ class TestUtils
         return self::$userPassword;
     }
 
+    public static function getHeaders($token)
+    {
+        $headers = ['Accept' => 'application/json'];
+        $headers['Authorization'] = 'Bearer '. $token;
+        return $headers;
+    }
+
 }
