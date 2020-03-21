@@ -10,7 +10,6 @@ class ProjectList extends PureComponent {
 
         this.state = {
             projects : [],
-            statusCode : 0,
         }
     }
 
@@ -21,8 +20,7 @@ class ProjectList extends PureComponent {
     loadData = () => {
         get('projects').then((res) => {
             this.setState({ 
-                projects : res.data,
-                statusCode : res.status
+                projects : res.data.projects
             });
         }).catch(err => {
             window.location = "/error";
