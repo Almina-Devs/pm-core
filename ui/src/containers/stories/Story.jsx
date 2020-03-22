@@ -23,7 +23,7 @@ export default class Story extends PureComponent {
         let { id } = this.state;
 
         get('projects').then((res) => {
-            this.setState({ projects :res.data });
+            this.setState({ projects :res.data.projects });
         });
         
         get('lanes').then((res) => {

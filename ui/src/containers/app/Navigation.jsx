@@ -104,7 +104,11 @@ const Navigation = (props) => {
         </NavItem>
         <NavItem>
           <NavLink href="/gantt">Gantt</NavLink>
-        </NavItem>        
+        </NavItem>
+        <NavItem>
+          <NavLink href="/calendar">Calendar</NavLink>
+        </NavItem>
+
       </Nav>
 
       <Nav>
