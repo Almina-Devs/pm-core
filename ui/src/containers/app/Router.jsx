@@ -17,6 +17,8 @@ import Logout from '../app/auth/Logout';
 import Register from '../app/auth/Register';
 import StoryList from '../stories/StoryList';
 import Story from '../stories/Story';
+import TaskList from '../tasks/TaskList';
+import Task from '../tasks/Task';
 import UserList from '../users/UserList';
 import Gantt from '../gantt/Gantt';
 import ProjectCalendar from '../calendar/ProjectCalendar';
@@ -46,6 +48,7 @@ export default class Router extends Component {
                         <PrivateRoute path="/users" component={UserList} exact={true} />
                         <PrivateRoute path="/gantt" component={Gantt} exact={true} />
                         <PrivateRoute path="/calendar" component={ProjectCalendar} exact={true} />
+                        <PrivateRoute path="/tasks" component={TaskList} exact={true} />
                         <Route path="/login" component={Login} exact={true} />
                         <Route path="/logout" component={Logout} exact={true} />
                         <Route path="/Register" component={Register} exact={true} />

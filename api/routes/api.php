@@ -23,6 +23,8 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 
     Route::resource('/stories', 'StoriesController');
 
+    Route::resource('/tasks', 'TasksController');
+
     Route::resource('/users', 'UsersController');
 
     Route::get('/boards', 'BoardsController@index');

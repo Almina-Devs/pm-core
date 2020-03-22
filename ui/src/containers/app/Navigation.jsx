@@ -81,6 +81,25 @@ const Navigation = (props) => {
 
             <DropdownItem divider />
 
+            <DropdownItem header>Tasks</DropdownItem>
+            <DropdownItem>
+                <Row>
+                    <Col>
+                        <a href="/tasks">
+                            <i className="fas fa-list"></i>
+                        </a>                
+                    </Col>
+                    <Col>
+                        <a href="/tasks/create">
+                            <i className="fas fa-plus"></i>
+                        </a>
+                    </Col>
+                </Row>
+            </DropdownItem>
+
+
+            <DropdownItem divider />
+
             <DropdownItem header>Users</DropdownItem>
             <DropdownItem>
                 <Row>
